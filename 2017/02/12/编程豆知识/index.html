@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="编程豆知识1.dependent::destroyhas_many :posts,dependent::destroy  
+意思就是group删除的话，对应group里的post也删除
+2.model visualhttps://github.com/voormedia/rails-erd/blob/master/README.md可以自动生成上面所示的模型关联图方法如下：
+
+brew insta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2017/02/12/编程豆知识/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="编程豆知识1.dependent::destroyhas_many :posts,dependent::destroy  
+意思就是group删除的话，对应group里的post也删除
+2.model visualhttps://github.com/voormedia/rails-erd/blob/master/README.md可以自动生成上面所示的模型关联图方法如下：
+
+brew insta">
+<meta property="og:updated_time" content="2017-03-14T16:23:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="编程豆知识1.dependent::destroyhas_many :posts,dependent::destroy  
+意思就是group删除的话，对应group里的post也删除
+2.model visualhttps://github.com/voormedia/rails-erd/blob/master/README.md可以自动生成上面所示的模型关联图方法如下：
+
+brew insta">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-编程豆知识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/12/编程豆知识/" class="article-date">
+  <time datetime="2017-02-12T03:42:49.000Z" itemprop="datePublished">2017-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="编程豆知识"><a href="#编程豆知识" class="headerlink" title="编程豆知识"></a>编程豆知识</h1><h3 id="1-dependent-destroy"><a href="#1-dependent-destroy" class="headerlink" title="1.dependent::destroy"></a>1.dependent::destroy</h3><p><code>has_many :posts,dependent::destroy</code>  </p>
+<p>意思就是group删除的话，对应group里的post也删除</p>
+<h3 id="2-model-visual"><a href="#2-model-visual" class="headerlink" title="2.model visual"></a>2.model visual</h3><p><code>https://github.com/voormedia/rails-erd/blob/master/README.md</code><br>可以自动生成上面所示的模型关联图<br>方法如下：</p>
+<ol>
+<li><code>brew install graphviz</code></li>
+<li>Gemfile中加入 <code>gem &quot;rails-erd&quot;</code>,后重新bundle</li>
+</ol>
+<p>3.<code>rake erd</code><br>atom项目文件下就会生成资料库关系的图示文件 erb.pdf</p>
+<h3 id="3-How-to-user-icon-in-ERB"><a href="#3-How-to-user-icon-in-ERB" class="headerlink" title="3.How to user icon in ERB"></a>3.How to user icon in ERB</h3><p>Refer to <a href="https://github.com/bokmann/font-awesome-rails" target="_blank" rel="external">font-awesome-helper</a>,<a href="http://fontawesome.io/cheatsheet/" target="_blank" rel="external">fontawesome cheatsheet</a>,<a href="http://fontawesome.io/examples/" target="_blank" rel="external">fontawesome example</a></p>
+<p>e.g..  <code>&lt;li&gt;&lt;%= link_to(&quot;login&quot;, new_user_session_path) %&gt;&lt;/li&gt;</code></p>
+<p>To <code>&lt;li&gt;&lt;%= link_to(content_tag(:i, &#39;登入&#39;, class: &#39;fa fa-sign-in&#39;), new_user_session_path) %&gt;&lt;/li&gt;</code></p>
+<p>Like:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">content_tag(<span class="symbol">:li</span>, fa_icon(<span class="string">"check li"</span>, <span class="symbol">text:</span> <span class="string">"Bulleted list item"</span>))</div><div class="line"><span class="comment"># =&gt; &lt;li&gt;&lt;i class="fa fa-check fa-li"&gt;&lt;/i&gt; Bulleted list item&lt;/li&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fa_icon <span class="string">"quote-left 4x"</span>, <span class="class"><span class="keyword">class</span>: "<span class="title">text</span>-<span class="title">muted</span> <span class="title">pull</span>-<span class="title">left</span>"</span></div><div class="line"><span class="comment"># =&gt; &lt;i class="fa fa-quote-left fa-4x text-muted pull-left"&gt;&lt;/i&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&lt;li&gt; &lt;%= link_to("Products",  admin_products_path, :class =&gt; "btn btn-xx btn-info" ) %&gt; &lt;/li&gt;</div><div class="line">1st</div><div class="line">&lt;a href="admin_products_path class="btn btn-xx btn-info" &gt;Products&lt;/a&gt;</div><div class="line">2nd</div><div class="line">&lt;li&gt;&lt;%= link_to(content_tag(:i, 'products', class: 'fa fa-sign-in'), new_user_session_path) %&gt;&lt;/li&gt;</div><div class="line">3rd</div><div class="line"></div><div class="line">&lt;ul class="nav nav-pills nav-stacked" style="max-width: 300px; padding-top:20px;"&gt;</div><div class="line">      &lt;li class="active"&gt;&lt;%= link_to("Jobs", admin_jobs_path ) %&gt; &lt;/li&gt;</div><div class="line">   &lt;/ul&gt;</div><div class="line">4th</div><div class="line"></div><div class="line"></div><div class="line">&lt;td&gt;</div><div class="line">-    &lt;%= link_to("Edit", edit_admin_job_path(job), :class =&gt; "btn btn-xs btn-info") %&gt;</div><div class="line">+    &lt;%= link_to edit_admin_job_path(job), class: "btn btn-xs btn-info" do %&gt;&lt;i class="fa fa-pencil"&gt;&lt;/i&gt;&lt;% end %&gt;</div><div class="line">-    &lt;%= link_to("Destroy", admin_job_path(job), :method =&gt; :delete, :class =&gt; "btn btn-xs  btn-danger", :data =&gt; &#123; :confirm =&gt; "Are you sure?" &#125;) %&gt;</div><div class="line">+    &lt;%= link_to admin_job_path(job), :method =&gt; :delete, :class =&gt; "btn btn-xs  btn-danger", :data =&gt; &#123; :confirm =&gt; "Are you sure?" &#125; do %&gt;&lt;i class="fa fa-trash-o"&gt;&lt;/i&gt;&lt;% end %&gt;</div><div class="line">    &lt;% if job.is_hidden %&gt;</div><div class="line">-     &lt;%= link_to("Publish", publish_admin_job_path(job) , :method =&gt; :post, :class =&gt; "btn btn-xs btn-success") %&gt;</div><div class="line">+    &lt;%= link_to publish_admin_job_path(job) , :method =&gt; :post, :class =&gt; "btn btn-xs btn-success" do %&gt;&lt;i class="fa fa-eye"&gt;&lt;/i&gt;&lt;% end %&gt;</div><div class="line">    &lt;% else %&gt;</div><div class="line">-      &lt;%= link_to("Hide", hide_admin_job_path(job), :method =&gt; :post,  :class =&gt; "btn btn-xs btn-warning") %&gt;</div><div class="line">+    &lt;%= link_to hide_admin_job_path(job), :method =&gt; :post,  :class =&gt; "btn btn-xs btn-warning" do %&gt;&lt;i class="fa fa-eye-slash"&gt;&lt;/i&gt;&lt;% end %&gt;</div><div class="line">    &lt;% end %&gt;</div><div class="line">&lt;/td&gt;</div><div class="line"></div><div class="line">&lt;%= link_to("以支付宝支付",pay_with_alipay_order_path(@order.token), :method =&gt; :post,</div><div class="line">      :class =&gt; "btn btn-danger") %&gt;</div></pre></td></tr></table></figure>
+<h3 id="4-simple-form"><a href="#4-simple-form" class="headerlink" title="4.simple_form"></a>4.simple_form</h3><p><code>simple_form</code> 是rails 内建的helper，可以帮帮把<code>\r\n</code>翻译成<br></p>
+<p>因为系统存数据的方法断行是<code>\r\n</code>，HTML不懂什么是<code>\r\n</code>，HTML只知道断行符号是<br></p>
+<h3 id="5-Helper"><a href="#5-Helper" class="headerlink" title="5.Helper"></a>5.Helper</h3><p>Helper是小方法，views用的小方法，Rails内建很多<a href="http://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html" target="_blank" rel="external">Helper</a></p>
+<p>自定义Helper都会放在app/helpers</p>
+<h3 id="6-render-“form”是什么意思？"><a href="#6-render-“form”是什么意思？" class="headerlink" title="6.render “form”是什么意思？"></a>6.render “form”是什么意思？</h3><p>其实这是 &lt;%= render :partial =&gt; “form” %&gt; 的“缩写”，意思是我要引用 Partial (局部）页面的方式。因为我们发现有很大量的程式码重复，所以可以用这样的方式收纳。<br>它的规则是同目录底下的 <code>_xxxx.html.erb</code></p>
+<h3 id="7-irb-rails-c"><a href="#7-irb-rails-c" class="headerlink" title="7.irb  rails c"></a>7.irb  rails c</h3><p>console可以调用资料库，irb只能用来测试代码</p>
+<h3 id="8-redirect-to-back"><a href="#8-redirect-to-back" class="headerlink" title="8.redirect_to :back"></a>8.redirect_to :back</h3><p>回到之前浏览的页面，不发生跳转</p>
+<p>## </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/12/编程豆知识/" data-id="cj09qze6a0000drudmswl7kff" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/02/22/前端笔记-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/05/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/03/14/自我认知的新方式 -广州DC/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/09/学习的套路/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/05/前端笔记-2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/04/远程协作的框架/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/22/前端笔记-1/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
