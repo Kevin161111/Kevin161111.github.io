@@ -1,0 +1,798 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Objective
+关于今天的课程，你记得什么？完成了什么？
+
+因为和同事元宵聚餐没办法推迟，回来已经9点半，预估下时间，决定做一节结账页面实现，做到一半发现自己对MCV架构有了理解，索性在本子上列了todolist：完成结账页面实现后，写个课程总结复盘。
+完成了
+
+结账页面建立完成
+写了结账页面课程总结productlist’MCV
+
+Reflective
+你要如何形容今天的情绪今天的高峰是什么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2/10 全栈日记-结账页面和第一次写课程总结">
+<meta property="og:url" content="https://kevin161111.github.io/2017/02/11/2017-02-11-1406049/index.html">
+<meta property="og:site_name" content="KevinHan">
+<meta property="og:description" content="Objective
+关于今天的课程，你记得什么？完成了什么？
+
+因为和同事元宵聚餐没办法推迟，回来已经9点半，预估下时间，决定做一节结账页面实现，做到一半发现自己对MCV架构有了理解，索性在本子上列了todolist：完成结账页面实现后，写个课程总结复盘。
+完成了
+
+结账页面建立完成
+写了结账页面课程总结productlist’MCV
+
+Reflective
+你要如何形容今天的情绪今天的高峰是什么">
+<meta property="og:updated_time" content="2017-03-20T14:35:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2/10 全栈日记-结账页面和第一次写课程总结">
+<meta name="twitter:description" content="Objective
+关于今天的课程，你记得什么？完成了什么？
+
+因为和同事元宵聚餐没办法推迟，回来已经9点半，预估下时间，决定做一节结账页面实现，做到一半发现自己对MCV架构有了理解，索性在本子上列了todolist：完成结账页面实现后，写个课程总结复盘。
+完成了
+
+结账页面建立完成
+写了结账页面课程总结productlist’MCV
+
+Reflective
+你要如何形容今天的情绪今天的高峰是什么">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kevin161111.github.io/2017/02/11/2017-02-11-1406049/"/>
+
+
+
+
+
+  <title> 2/10 全栈日记-结账页面和第一次写课程总结 | KevinHan </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KevinHan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/11/2017-02-11-1406049/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                2/10 全栈日记-结账页面和第一次写课程总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-11T13:44:00+08:00">
+                2017-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/11/2017-02-11-1406049/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/11/2017-02-11-1406049/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h2><blockquote>
+<p>关于今天的课程，你记得什么？<br>完成了什么？</p>
+</blockquote>
+<p>因为和同事元宵聚餐没办法推迟，回来已经9点半，预估下时间，决定做一节结账页面实现，做到一半发现自己对MCV架构有了理解，索性在本子上列了todolist：完成结账页面实现后，写个课程总结复盘。</p>
+<p>完成了</p>
+<ul>
+<li>结账页面建立完成</li>
+<li>写了结账页面课程总结<a href="http://kevinhan161111-blog.logdown.com/posts/1402780-productlistmcv" target="_blank" rel="external">productlist’MCV</a></li>
+</ul>
+<h2 id="Reflective"><a href="#Reflective" class="headerlink" title="Reflective"></a>Reflective</h2><blockquote>
+<p>你要如何形容今天的情绪<br>今天的高峰是什么？<br>今天的低点是什么？</p>
+</blockquote>
+<p>结账页面课程MCV总结完成的那一刻很高兴。自己也有了足够的耐心，以前时间的焦虑感彻底没有了。</p>
+<h2 id="interpretive"><a href="#interpretive" class="headerlink" title="interpretive"></a>interpretive</h2><blockquote>
+<p>我们今天学到了什么？<br>今天最重要的领悟是什么？</p>
+</blockquote>
+<p>productslist‘sMCV搞定，并且梳理了model之间的关系</p>
+<p>天最大的领悟来自课程总结完成的那一刻，发现这种用自己的语言写下来的方式实在是太好了，打通筋脉、呼吸更畅、思路一下明亮、柳暗花明的感觉。这就是最好的提取练习啊，下次如果可以默写下来的话是不是更好呢！</p>
+<p>套路总结：</p>
+<ol>
+<li>根据课程打一遍，知道输入什么得到什么输出</li>
+<li>用自己的话把对课程理解写成一篇自己版本的课程，必须要写下来，大脑中的理解不行，要写下来才行</li>
+<li>根据理解再敲一遍，最终形成肌肉记忆</li>
+<li>默写出教程！才是真的学会了！不会的google，根据时间来列todolist，可以适当绕过，不要影响学习进程，以后理解也是可以的</li>
+</ol>
+<p>Decisional</p>
+<blockquote>
+<p>我们会如何用一句话形容今天的工作？<br>有哪些工作需要明天继续努力？</p>
+</blockquote>
+<p>今天收获很多，自己怎么没有早点发现这点呢？不过是自己思考出来实践出来的东西，并且总结成套路了。才真正发现XDite老师的良苦用心，三遍不同程度的练习，学习的黄金通道。感恩。</p>
+<ul>
+<li>套路出来了，看看自己能坚持多久呢？放弃的时候其实就是时间套路没用对增加了焦虑感！</li>
+</ul>
+<p>时间套路</p>
+<ul>
+<li>可利用时间多少</li>
+<li>预估这段可利用时间可达成的可行性目标</li>
+<li>记录时间开销</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/11/2017-02-11-1405967/" rel="next" title="2/9 全栈日记-时间利用思考">
+                <i class="fa fa-chevron-left"></i> 2/9 全栈日记-时间利用思考
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/11/2017-02-11-1406133/" rel="prev" title="2/11 全栈日记-周总结">
+                2/11 全栈日记-周总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/11/2017-02-11-1406049/"
+           data-title="2/10 全栈日记-结账页面和第一次写课程总结" data-url="https://kevin161111.github.io/2017/02/11/2017-02-11-1406049/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg"
+               alt="KevinHan" />
+          <p class="site-author-name" itemprop="name">KevinHan</p>
+           
+              <p class="site-description motion-element" itemprop="description">keep growing</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin161111" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100013211401924" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Objective"><span class="nav-number">1.</span> <span class="nav-text">Objective</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reflective"><span class="nav-number">2.</span> <span class="nav-text">Reflective</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#interpretive"><span class="nav-number">3.</span> <span class="nav-text">interpretive</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinHan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kevin1111"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

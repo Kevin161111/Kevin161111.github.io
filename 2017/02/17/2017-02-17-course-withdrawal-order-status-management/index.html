@@ -1,0 +1,791 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="课程提取-切换订单状态这课逻辑比较难，记忆就好了
+实现内容：后台订单的不同类型的管理
+
+已下单（order_placed）
+已付款(paid)
+出货中(shipping)
+到货(shipped)
+取消订单(order_cancelled)
+退货(good_returned)
+
+按照理解，可以给order表单增加不同的栏位来进行管理，不过这牵扯到已下单到已付款一直到退货的逻辑流程和相关之间的关系，如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="课程提取-订单状态管理">
+<meta property="og:url" content="https://kevin161111.github.io/2017/02/17/2017-02-17-course-withdrawal-order-status-management/index.html">
+<meta property="og:site_name" content="KevinHan">
+<meta property="og:description" content="课程提取-切换订单状态这课逻辑比较难，记忆就好了
+实现内容：后台订单的不同类型的管理
+
+已下单（order_placed）
+已付款(paid)
+出货中(shipping)
+到货(shipped)
+取消订单(order_cancelled)
+退货(good_returned)
+
+按照理解，可以给order表单增加不同的栏位来进行管理，不过这牵扯到已下单到已付款一直到退货的逻辑流程和相关之间的关系，如">
+<meta property="og:image" content="http://user-image.logdown.io/user/23053/blog/21999/post/1426120/2H1GK9gTBe2mK9NnCi9g_OlKrqkd8QfqeMk8ek5zf_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-03%20%E4%B8%8B%E5%8D%883.15.13.png">
+<meta property="og:image" content="http://user-image.logdown.io/user/23053/blog/21999/post/1426120/Okz8R3qLQvWHGEzyTrKp_WX20170217-155524@2x.png">
+<meta property="og:updated_time" content="2017-03-20T14:34:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="课程提取-订单状态管理">
+<meta name="twitter:description" content="课程提取-切换订单状态这课逻辑比较难，记忆就好了
+实现内容：后台订单的不同类型的管理
+
+已下单（order_placed）
+已付款(paid)
+出货中(shipping)
+到货(shipped)
+取消订单(order_cancelled)
+退货(good_returned)
+
+按照理解，可以给order表单增加不同的栏位来进行管理，不过这牵扯到已下单到已付款一直到退货的逻辑流程和相关之间的关系，如">
+<meta name="twitter:image" content="http://user-image.logdown.io/user/23053/blog/21999/post/1426120/2H1GK9gTBe2mK9NnCi9g_OlKrqkd8QfqeMk8ek5zf_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-03%20%E4%B8%8B%E5%8D%883.15.13.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kevin161111.github.io/2017/02/17/2017-02-17-course-withdrawal-order-status-management/"/>
+
+
+
+
+
+  <title> 课程提取-订单状态管理 | KevinHan </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KevinHan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/17/2017-02-17-course-withdrawal-order-status-management/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                课程提取-订单状态管理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-17T15:59:00+08:00">
+                2017-02-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/17/2017-02-17-course-withdrawal-order-status-management/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/17/2017-02-17-course-withdrawal-order-status-management/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="课程提取-切换订单状态"><a href="#课程提取-切换订单状态" class="headerlink" title="课程提取-切换订单状态"></a>课程提取-切换订单状态</h2><p><em>这课逻辑比较难，记忆就好了</em></p>
+<p>实现内容：后台订单的不同类型的管理</p>
+<ul>
+<li>已下单（order_placed）</li>
+<li>已付款(paid)</li>
+<li>出货中(shipping)</li>
+<li>到货(shipped)</li>
+<li>取消订单(order_cancelled)</li>
+<li>退货(good_returned)</li>
+</ul>
+<p>按照理解，可以给order表单增加不同的栏位来进行管理，不过这牵扯到已下单到已付款一直到退货的逻辑流程和相关之间的关系，如下图：</p>
+<p><img src="http://user-image.logdown.io/user/23053/blog/21999/post/1426120/2H1GK9gTBe2mK9NnCi9g_OlKrqkd8QfqeMk8ek5zf_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-03%20%E4%B8%8B%E5%8D%883.15.13.png" alt="OlKrqkd8QfqeMk8ek5zf_螢幕快照 2017-02-03 下午3.15.13.png"></p>
+<p>只有已下订单才可以进到已付款，而且只有在已下单和已付款状态才可以取消订单。只有到货的订单才可以退货。如果用model来实现的话会有大段的代码逻辑。所以用了一个aasm的gem来实现。</p>
+<h3 id="Step1："><a href="#Step1：" class="headerlink" title="Step1："></a>Step1：</h3><p>安装 <code>gem &quot;aasm&quot;</code> ，执行<code>bundle install</code>并重启rails s</p>
+<h3 id="step2：增加aasm-state栏位"><a href="#step2：增加aasm-state栏位" class="headerlink" title="step2：增加aasm_state栏位"></a>step2：增加aasm_state栏位</h3><p><code>rails g migratiom add_aasm_state_to_order</code></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">add_column <span class="symbol">:orders</span>, <span class="symbol">:aasm_state</span>, <span class="symbol">:string</span>, <span class="symbol">default:</span> <span class="string">"order_placed"</span></div><div class="line">add_index <span class="symbol">:orders</span>, <span class="symbol">:aasm_state</span></div></pre></td></tr></table></figure>
+<p><code>rake db:</code>migrate</p>
+<p>增加栏位的动作可以理解，通过aasm的state来设置不同的订单状态，初始状态为<code>order_placed</code></p>
+<p>add_index 的动作应该是新增index的页面来显示不同的aasm_state状态下的order</p>
+<h3 id="step3-设置订单状态"><a href="#step3-设置订单状态" class="headerlink" title="step3:设置订单状态"></a>step3:设置订单状态</h3><p>牵扯到表单栏位的内容区order.rb中修改</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> AASM</div><div class="line"></div><div class="line">aasm <span class="keyword">do</span></div><div class="line">state <span class="symbol">:order_placed</span>, <span class="symbol">initial:</span> <span class="literal">true</span></div><div class="line">state <span class="symbol">:paid</span></div><div class="line">state <span class="symbol">:shipping</span></div><div class="line">state <span class="symbol">:shipped</span></div><div class="line">state <span class="symbol">:order_cancelled</span></div><div class="line">state <span class="symbol">:good_returned</span></div><div class="line"></div><div class="line">event <span class="symbol">:make_payment</span> <span class="keyword">do</span></div><div class="line">  transitions <span class="symbol">from:</span> <span class="symbol">:order_placed</span>, <span class="symbol">to:</span> <span class="symbol">:paid</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">event <span class="symbol">:ship</span> <span class="keyword">do</span></div><div class="line">  transitions <span class="symbol">from:</span> <span class="symbol">:paid</span>, <span class="symbol">to:</span> <span class="symbol">:shipping</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">event <span class="symbol">:deliver</span> <span class="keyword">do</span></div><div class="line">  transitions <span class="symbol">from:</span> <span class="symbol">:shipping</span>, <span class="symbol">to:</span> <span class="symbol">:shipped</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">event <span class="symbol">:return_good</span> <span class="keyword">do</span></div><div class="line">  transitions <span class="symbol">from:</span> <span class="symbol">:shipped</span>, <span class="symbol">to:</span> <span class="symbol">:good_returned</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">event <span class="symbol">:cancell_order</span> <span class="keyword">do</span></div><div class="line">  transitions from : [<span class="symbol">:order_placed</span>, <span class="symbol">:paid</span>], <span class="symbol">to:</span> <span class="symbol">:order_cancelled</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>语法只能记忆了，逻辑还是通的：通过命名不同的state，让state遍历不同的event，在event中定义了不同state之间的切换。</p>
+<h4 id="step4：用aasm机制设定订单付款"><a href="#step4：用aasm机制设定订单付款" class="headerlink" title="step4：用aasm机制设定订单付款"></a>step4：用aasm机制设定订单付款</h4><p>Orders_controller.rb</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">...(略)</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">pay_with_alipay</span></span></div><div class="line">    @order = Order.find_by_token(params[<span class="symbol">:id</span>])</div><div class="line">    @order.set_payment_with!(<span class="string">"alipay"</span>)</div><div class="line">-   @order.pay!</div><div class="line">+   @order.make_payment!</div><div class="line"></div><div class="line">    redirect_to order_path(@order.token), <span class="symbol">notice:</span> <span class="string">"使用支付宝成功完成付款"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">pay_with_wechat</span></span></div><div class="line">    @order = Order.find_by_token(params[<span class="symbol">:id</span>])</div><div class="line">    @order.set_payment_with!(<span class="string">"wechat"</span>)</div><div class="line">-   @order.pay!</div><div class="line">+   @order.make_payment!</div><div class="line"></div><div class="line">    redirect_to order_path(@order.token), <span class="symbol">notice:</span> <span class="string">"使用微信支付成功完成付款"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  </div><div class="line">...(略)</div></pre></td></tr></table></figure>
+<p>Order.rb</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-    event <span class="symbol">:make_payment</span> <span class="keyword">do</span></div><div class="line">+    event <span class="symbol">:make_payment</span>, <span class="symbol">after_commit:</span> <span class="symbol">:pay!</span> <span class="keyword">do</span></div><div class="line">       transitions <span class="symbol">from:</span> <span class="symbol">:order_placed</span>, <span class="symbol">to:</span> <span class="symbol">:paid</span></div><div class="line">     <span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>git add commit</p>
+<h4 id="通过console测试"><a href="#通过console测试" class="headerlink" title="通过console测试"></a>通过console测试</h4><p>Order.last会显示</p>
+<p><img src="http://user-image.logdown.io/user/23053/blog/21999/post/1426120/Okz8R3qLQvWHGEzyTrKp_WX20170217-155524@2x.png" alt="WX20170217-155524@2x.png"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/17/2017-02-17-2-16-full-stack-logs/" rel="next" title="2/16全栈日志">
+                <i class="fa fa-chevron-left"></i> 2/16全栈日志
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/19/2017-02-19-deployment-errors-heroku/" rel="prev" title="错误记录-heroku部署">
+                错误记录-heroku部署 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/17/2017-02-17-course-withdrawal-order-status-management/"
+           data-title="课程提取-订单状态管理" data-url="https://kevin161111.github.io/2017/02/17/2017-02-17-course-withdrawal-order-status-management/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg"
+               alt="KevinHan" />
+          <p class="site-author-name" itemprop="name">KevinHan</p>
+           
+              <p class="site-description motion-element" itemprop="description">keep growing</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin161111" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100013211401924" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#课程提取-切换订单状态"><span class="nav-number">1.</span> <span class="nav-text">课程提取-切换订单状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step1："><span class="nav-number">1.1.</span> <span class="nav-text">Step1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step2：增加aasm-state栏位"><span class="nav-number">1.2.</span> <span class="nav-text">step2：增加aasm_state栏位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step3-设置订单状态"><span class="nav-number">1.3.</span> <span class="nav-text">step3:设置订单状态</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#step4：用aasm机制设定订单付款"><span class="nav-number">1.3.1.</span> <span class="nav-text">step4：用aasm机制设定订单付款</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过console测试"><span class="nav-number">1.3.2.</span> <span class="nav-text">通过console测试</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinHan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kevin1111"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

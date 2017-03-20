@@ -1,0 +1,767 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="寄送订单通知信实现的功能：使用者下单后会收到一封订单确认信件
+如何实现？
+step1rails g mailer OrderMailer
+mailer这个东西就当是model吧，不过后面为什么是大写？难道除了MVC这种建立方式其他的都要大写？
+appliacatio_mailer.rb中加入
+12345class ApplicationMailer &amp;lt; ActionMailer::Base-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="课程提取-订单通知邮件">
+<meta property="og:url" content="https://kevin161111.github.io/2017/02/16/2017-02-16-1424335/index.html">
+<meta property="og:site_name" content="KevinHan">
+<meta property="og:description" content="寄送订单通知信实现的功能：使用者下单后会收到一封订单确认信件
+如何实现？
+step1rails g mailer OrderMailer
+mailer这个东西就当是model吧，不过后面为什么是大写？难道除了MVC这种建立方式其他的都要大写？
+appliacatio_mailer.rb中加入
+12345class ApplicationMailer &amp;lt; ActionMailer::Base-">
+<meta property="og:updated_time" content="2017-03-20T14:34:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="课程提取-订单通知邮件">
+<meta name="twitter:description" content="寄送订单通知信实现的功能：使用者下单后会收到一封订单确认信件
+如何实现？
+step1rails g mailer OrderMailer
+mailer这个东西就当是model吧，不过后面为什么是大写？难道除了MVC这种建立方式其他的都要大写？
+appliacatio_mailer.rb中加入
+12345class ApplicationMailer &amp;lt; ActionMailer::Base-">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kevin161111.github.io/2017/02/16/2017-02-16-1424335/"/>
+
+
+
+
+
+  <title> 课程提取-订单通知邮件 | KevinHan </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KevinHan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/16/2017-02-16-1424335/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                课程提取-订单通知邮件
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-16T22:27:00+08:00">
+                2017-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/16/2017-02-16-1424335/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/16/2017-02-16-1424335/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="寄送订单通知信"><a href="#寄送订单通知信" class="headerlink" title="寄送订单通知信"></a>寄送订单通知信</h2><p>实现的功能：使用者下单后会收到一封订单确认信件</p>
+<p>如何实现？</p>
+<h3 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h3><p><code>rails g mailer OrderMailer</code></p>
+<p>mailer这个东西就当是model吧，不过后面为什么是大写？难道除了MVC这种建立方式其他的都要大写？</p>
+<p>appliacatio_mailer.rb中加入</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ApplicationMailer</span> &lt; ActionMailer::Base</span></div><div class="line">-  default <span class="symbol">from:</span> <span class="string">"from@example.com"</span></div><div class="line">+  default <span class="symbol">from:</span> <span class="string">"service@jdstore.com"</span></div><div class="line">   layout <span class="string">'mailer'</span></div><div class="line"> <span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p><em>里面有 layout ‘mailer’，layout怎么又跑这里来？难道mailer没有controller？还是说写在两个地方都可以？</em></p>
+<p>default设定发信的服务器</p>
+<h3 id="step2-order-mailer-rb中加入"><a href="#step2-order-mailer-rb中加入" class="headerlink" title="step2:order_mailer.rb中加入"></a>step2:order_mailer.rb中加入</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OrderMailer</span> &lt; ApplicationMailer</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">notify_order_placed</span><span class="params">(order)</span></span></div><div class="line">    @order  = order</div><div class="line">    @user   = order.user</div><div class="line">    @product_lists = @order.product_lists</div><div class="line"></div><div class="line">    mail(<span class="symbol">to:</span> @user.email , <span class="symbol">subject:</span> <span class="string">"[JDstore] 感谢您完成本次的下单，以下是您这次购物明细 <span class="subst">#&#123;order.token&#125;</span>"</span>)</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>果然是model的功能，里面定义了实现的方式和内容</p>
+<p><code>touch app/views/order_mailer/notify_order_placed.html.erb</code></p>
+<p><em>注意这个名称，notify_order_placed和上面的定义有关系吗？</em></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-12"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span></div><div class="line">      订单明细 <span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">small</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("订单连结", <span class="attr">order_url</span>(@<span class="attr">order.token</span>)) %&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">small</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-bordered"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">thead</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">th</span> <span class="attr">width</span>=<span class="string">"70%"</span>&gt;</span>商品明细<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>单价<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>数量<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>小记<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">%</span> @<span class="attr">product_lists.each</span> <span class="attr">do</span> |<span class="attr">product_list</span>| %&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">%=</span> <span class="attr">product_list.product_name</span> %&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">%=</span> <span class="attr">product_list.product_price</span> %&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">%=</span> <span class="attr">product_list.quantity</span> %&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">%=</span> <span class="attr">product_list.quantity</span> * <span class="attr">product_list.product_price</span> %&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></div><div class="line"></div><div class="line">      <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"total group clearfix"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">class</span>=<span class="string">"pull-right"</span>&gt;</span></div><div class="line">        总计 <span class="tag">&lt;<span class="name">%=</span> @<span class="attr">order.total</span> %&gt;</span> CNY</div><div class="line">      <span class="tag">&lt;/<span class="name">h4</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;<span class="name">hr</span>&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;<span class="name">h2</span>&gt;</span> 寄送资讯 <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-striped table-bordered"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> 订购人 <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">%=</span> @<span class="attr">order.billing_name</span> %&gt;</span> - <span class="tag">&lt;<span class="name">%=</span> @<span class="attr">order.billing_address</span> %&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> 收件者 <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">%=</span> @<span class="attr">order.shipping_name</span> %&gt;</span> - <span class="tag">&lt;<span class="name">%=</span> @<span class="attr">order.shipping_address</span> %&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>step3：通过letter_opener这个gem来预览邮件</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+ gem <span class="string">'letter_opener'</span>, <span class="symbol">group:</span> <span class="symbol">:development</span></div></pre></td></tr></table></figure>
+<p><em>group: :development应该是加入development的模式。</em></p>
+<p>然后config/environments/development.rb中加入</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">...(略)</div><div class="line">+ config.action_mailer.default_url_options = &#123; <span class="symbol">host:</span> <span class="string">'localhost:3000'</span> &#125;</div><div class="line">+ config.action_mailer.delivery_method = <span class="symbol">:letter_opener</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>看不懂，应该是development模式的内容</p>
+<p><code>bundle install</code>然后重启rails s</p>
+<h3 id="Step4-通过console-测试预览"><a href="#Step4-通过console-测试预览" class="headerlink" title="Step4:通过console 测试预览"></a>Step4:通过console 测试预览</h3><p><code>OrderMailer.notify_order_placed(Order.last).deliver!</code>在console下运行，就会弹出信件的预览了，</p>
+<h3 id="Step5-在订单建立是寄通知信"><a href="#Step5-在订单建立是寄通知信" class="headerlink" title="Step5:在订单建立是寄通知信"></a>Step5:在订单建立是寄通知信</h3><p>修改orders_controller.rb</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OrdersController</span> &lt; ApplicationController</span></div><div class="line">  before_action <span class="symbol">:authenticate_user!</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">create</span></span></div><div class="line">    @order = Order.new(order_params)</div><div class="line">    @order.user = current_user</div><div class="line">    @order.total = current_cart.total_price</div><div class="line"></div><div class="line">    <span class="keyword">if</span> @order.save</div><div class="line"></div><div class="line">      current_cart.cart_items.each <span class="keyword">do</span> <span class="params">|cart_item|</span></div><div class="line">        product_list = ProductList.new</div><div class="line">        product_list.order = @order</div><div class="line">        product_list.product_name = cart_item.product.title</div><div class="line">        product_list.product_price = cart_item.product.price</div><div class="line">        product_list.quantity = cart_item.quantity</div><div class="line">        product_list.save</div><div class="line">      <span class="keyword">end</span></div><div class="line"> +    current_cart.clean!</div><div class="line"> +    OrderMailer.notify_order_placed(@order).deliver!</div><div class="line"></div><div class="line">      redirect_to order_path(@order.token)</div><div class="line">    <span class="keyword">else</span></div><div class="line">      render <span class="string">'carts/checkout'</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/15/2017-02-15-courses-withdrawn-in-order-to-pay/" rel="next" title="课程提取-订单支付">
+                <i class="fa fa-chevron-left"></i> 课程提取-订单支付
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/16/2017-02-16-2-15-full-stack-logs/" rel="prev" title="2/15全栈日志">
+                2/15全栈日志 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/16/2017-02-16-1424335/"
+           data-title="课程提取-订单通知邮件" data-url="https://kevin161111.github.io/2017/02/16/2017-02-16-1424335/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg"
+               alt="KevinHan" />
+          <p class="site-author-name" itemprop="name">KevinHan</p>
+           
+              <p class="site-description motion-element" itemprop="description">keep growing</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin161111" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100013211401924" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#寄送订单通知信"><span class="nav-number">1.</span> <span class="nav-text">寄送订单通知信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#step1"><span class="nav-number">1.1.</span> <span class="nav-text">step1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#step2-order-mailer-rb中加入"><span class="nav-number">1.2.</span> <span class="nav-text">step2:order_mailer.rb中加入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step4-通过console-测试预览"><span class="nav-number">1.3.</span> <span class="nav-text">Step4:通过console 测试预览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step5-在订单建立是寄通知信"><span class="nav-number">1.4.</span> <span class="nav-text">Step5:在订单建立是寄通知信</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinHan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kevin1111"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

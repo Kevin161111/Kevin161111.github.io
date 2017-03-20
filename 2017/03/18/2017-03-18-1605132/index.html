@@ -1,0 +1,771 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="编程是什么？输入什么，得到什么输出。如果A状况，采用A方法；如果B状况，采用B方法，然后重复输入到输出这个过程。
+如何学编程？把学编程想想成学做菜：找菜谱-&amp;gt;看示范或者请爸妈帮忙示范-&amp;gt;跟着做。背起来就对了，等对自己厨艺有信心了，那花时间研究就好了。
+vs方法二：牛肉指南，热力学原理，通透之后找菜谱煎牛排，这样肯定做不出来啊。
+音乐从音阶开始，英语从背单词开始，编程从C语言开始。。。这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="元学习课一">
+<meta property="og:url" content="https://kevin161111.github.io/2017/03/18/2017-03-18-1605132/index.html">
+<meta property="og:site_name" content="KevinHan">
+<meta property="og:description" content="编程是什么？输入什么，得到什么输出。如果A状况，采用A方法；如果B状况，采用B方法，然后重复输入到输出这个过程。
+如何学编程？把学编程想想成学做菜：找菜谱-&amp;gt;看示范或者请爸妈帮忙示范-&amp;gt;跟着做。背起来就对了，等对自己厨艺有信心了，那花时间研究就好了。
+vs方法二：牛肉指南，热力学原理，通透之后找菜谱煎牛排，这样肯定做不出来啊。
+音乐从音阶开始，英语从背单词开始，编程从C语言开始。。。这">
+<meta property="og:updated_time" content="2017-03-20T14:32:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="元学习课一">
+<meta name="twitter:description" content="编程是什么？输入什么，得到什么输出。如果A状况，采用A方法；如果B状况，采用B方法，然后重复输入到输出这个过程。
+如何学编程？把学编程想想成学做菜：找菜谱-&amp;gt;看示范或者请爸妈帮忙示范-&amp;gt;跟着做。背起来就对了，等对自己厨艺有信心了，那花时间研究就好了。
+vs方法二：牛肉指南，热力学原理，通透之后找菜谱煎牛排，这样肯定做不出来啊。
+音乐从音阶开始，英语从背单词开始，编程从C语言开始。。。这">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kevin161111.github.io/2017/03/18/2017-03-18-1605132/"/>
+
+
+
+
+
+  <title> 元学习课一 | KevinHan </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KevinHan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/18/2017-03-18-1605132/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                元学习课一
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-18T11:44:00+08:00">
+                2017-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/18/2017-03-18-1605132/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/18/2017-03-18-1605132/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="编程是什么？"><a href="#编程是什么？" class="headerlink" title="编程是什么？"></a>编程是什么？</h3><p>输入什么，得到什么输出。如果A状况，采用A方法；如果B状况，采用B方法，然后重复输入到输出这个过程。</p>
+<h3 id="如何学编程？"><a href="#如何学编程？" class="headerlink" title="如何学编程？"></a>如何学编程？</h3><p>把学编程想想成学做菜：找菜谱-&gt;看示范或者请爸妈帮忙示范-&gt;跟着做。背起来就对了，等对自己厨艺有信心了，那花时间研究就好了。</p>
+<p>vs方法二：牛肉指南，热力学原理，通透之后找菜谱煎牛排，这样肯定做不出来啊。</p>
+<p>音乐从音阶开始，英语从背单词开始，编程从C语言开始。。。这种方法是典型的方法2，大错特错的，这种方法学不好任何技能，每人该这么学东西，不该期待用错误的方法学的好任何东西。如果人类学走路先从力学原理开始，那应该是到3岁还在地上爬吧。</p>
+<p>野生程序员或者编程天才少年，是开始学编程的时候从学英语开始，学C语言开始？通常是去网上找到现成的教程，直接开始练的，成为大牛后避而不谈这样的黑历史，甚至屏蔽这样的学习法，最终写出来的教程也是政治正确的方法二：花上大把时间学习研究原理，接下来补上很小段的实践，如果用这样的方法学，很可能学不会。其实他们不是恶意的，而是好意，如果当初有人教我这么扎实的基础，当初就不会学的那么辛苦了。然而这样的教程却很难让新生经由这样的步骤学会编程，学不会真的是正常的。因为当初他们也不是这么学的，这真的是一套骗人的死胡同。<strong>学不会的技能都是被无聊&amp;苦逼搞到放弃的。</strong>如果按照市面上政治正确的方法学习，一辈子都可能学不会，反而变成了理所当然的结局。</p>
+<p>xdite一直在思考如何让新生简单的学习有较高技术门槛的技能，如编程。在这样的过程中，踏入了认知心理学的领域，领悟到了学习技能的秘密，要学会变成，要<strong>学会“学习的技巧”再学习</strong>，</p>
+<ul>
+<li>拼图理论</li>
+<li>成就感</li>
+<li>重复训练</li>
+<li>游戏化让自己上瘾</li>
+</ul>
+<h3 id="拼图理论"><a href="#拼图理论" class="headerlink" title="拼图理论"></a>拼图理论</h3><p>学习是拼图，而不是登山，不需要全部学完计算机理论或者编程语言理论全部学会了才开始实战，这样是把学习当成了登山，认为把基础打牢固了才可以进行下一步的学习，错误的认知。</p>
+<p>拼图，一块块的拼出， 总有一天可以拼出整个图。更有效率的方法应该是先找出边界，再往中间去填东西</p>
+<h3 id="成就感"><a href="#成就感" class="headerlink" title="成就感"></a>成就感</h3><p>正向反馈，有很强的成就感，没有成就感，很快就放弃。</p>
+<h3 id="重复训练"><a href="#重复训练" class="headerlink" title="重复训练"></a>重复训练</h3><p>大量的重复训练可以形成肌肉记忆，学编程最快的方法是跟着打，不懂的地方背起来，重复练习之后你就会发现突然懂很多东西了。解题越来越快，越来越知道自己干什么，直到最后可以自己做项目。</p>
+<h3 id="游戏化"><a href="#游戏化" class="headerlink" title="游戏化"></a>游戏化</h3><p>手游是让你如何上瘾的，三部曲</p>
+<ol>
+<li><strong>执行&amp;获得</strong>，教你按这个会有怎么样的操作，甚至可以得到奖励</li>
+<li><strong>熟悉&amp;掌握</strong>，熟悉大部分的原理，开始攻城掠地</li>
+<li><strong>奖励&amp;沉浸</strong>，当你觉得无聊时，系统开始出现随机性的奖励，让你不可自拔的沉迷</li>
+</ol>
+<p>迁移到编程上来是只有的：</p>
+<ol>
+<li><strong>抄&amp;改</strong>，快速把东西拼出来</li>
+<li>拼出<strong>更大</strong>的东西</li>
+<li>公开你的作品并<strong>享受称赞</strong></li>
+</ol>
+<p>真的不用好好打<strong>基础</strong>吗？学习时大脑的左脑负责逻辑认知，右脑负责感性认知。通过80年代艺术家思考的方式解释这个原理，新手5天如何学会画画-《像艺术学家一样思考》。新手在学素描时倒着画自己的自画像。这样不用专注细节，自己都不知道自己在画什么，纠结细节那部分的左脑逻辑就关掉了，反而右脑框架部分发挥作用，大致画的差不多。</p>
+<p>学习英语和编程也是同样的道理，关闭分析模式，先找到大致框架，模仿拼出基础框架-&gt;说英语与社交沟通-&gt;学会用语言的节奏。  相对而言分析模式反而会绊倒自己，大脑无法用未知解释未知，刚开始的时候拼命冲进度，只需要输入什么得到什么就好，复制&amp;抄代码快速做出小项目，或者录制学习的视频公开发表，建立smallwin并享受称赞。</p>
+<h3 id="关于拖延"><a href="#关于拖延" class="headerlink" title="关于拖延"></a>关于拖延</h3><p>另，人人都有拖延症，大多数人想学编程和英语是因为都知道这是时代大趋势，但是知道不等于做到。知道重要拖到不能再拖的一天，幻想自己在最后一天做出完美的作品，最后试了一两个小时就放弃了。拖延症大部分是害怕自己失败或者伤害自己，所以能拖延就拖延。</p>
+<p>如何治疗，<strong>骗</strong>自己，不是要做出完美的作品，只是<strong>玩玩而已</strong>。例如减肥很痛苦，然后反复失败，久而久之就害怕失败。方法就是慢跑，那就骗自己多走路，不是想减肥，而是多<strong>看看风景</strong>。例如我不是要做ppt，而是顺着思路<strong>打打草稿</strong>，做做看而已。</p>
+<p>一次讲太多关键会吃不消，分段学。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/18/元学习课一/" rel="next" title="元学习课一学习学习的套路">
+                <i class="fa fa-chevron-left"></i> 元学习课一学习学习的套路
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/18/数字力总结/" rel="prev" title="MJ超级数字力课程分享总结">
+                MJ超级数字力课程分享总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/18/2017-03-18-1605132/"
+           data-title="元学习课一" data-url="https://kevin161111.github.io/2017/03/18/2017-03-18-1605132/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg"
+               alt="KevinHan" />
+          <p class="site-author-name" itemprop="name">KevinHan</p>
+           
+              <p class="site-description motion-element" itemprop="description">keep growing</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin161111" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100013211401924" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#编程是什么？"><span class="nav-number">1.</span> <span class="nav-text">编程是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何学编程？"><span class="nav-number">2.</span> <span class="nav-text">如何学编程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拼图理论"><span class="nav-number">3.</span> <span class="nav-text">拼图理论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成就感"><span class="nav-number">4.</span> <span class="nav-text">成就感</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重复训练"><span class="nav-number">5.</span> <span class="nav-text">重复训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#游戏化"><span class="nav-number">6.</span> <span class="nav-text">游戏化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于拖延"><span class="nav-number">7.</span> <span class="nav-text">关于拖延</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinHan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kevin1111"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
