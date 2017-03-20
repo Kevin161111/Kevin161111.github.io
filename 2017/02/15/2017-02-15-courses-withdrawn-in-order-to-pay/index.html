@@ -107,7 +107,7 @@ rails g migration add_is_paid_to_order
 步骤Step1，订单判定需要对订单这个表单添加两个栏位，is_paid和payment_method
 rails g migration add_is_paid_to_order
 123def changeadd col">
-<meta property="og:updated_time" content="2017-03-20T14:34:52.000Z">
+<meta property="og:updated_time" content="2017-03-20T14:46:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="课程提取-订单支付">
 <meta name="twitter:description" content="订单支付
@@ -337,6 +337,28 @@ rails g migration add_is_paid_to_order
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -388,7 +410,7 @@ rails g migration add_is_paid_to_order
 <h4 id="Step2-views"><a href="#Step2-views" class="headerlink" title="Step2:views"></a>Step2:views</h4><p>App/views/orders/show.html.erb</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div class="group pull-right"&gt;</div><div class="line">&lt;%= link_to("pay by alipay"，pay_with_alipay_order_path(@order.token), :method =&gt; :post, :class =&gt; "btn btn-danger")%&gt;</div><div class="line">&lt;%= link_to("pay by wechat"，pay_with_wechat_order_path(@order.token), :method =&gt; :post, :class =&gt; "btn btn-danger")%&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
 <p>语法的疑问：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;%= link_to(<span class="string">"Delete"</span>, group_path(group),    <span class="class"><span class="keyword">class</span>: "<span class="title">btn</span> <span class="title">btn</span>-<span class="title">sm</span> <span class="title">btn</span>-<span class="title">default</span>", </span></div><div class="line">                         <span class="symbol">method:</span> <span class="symbol">:delete</span>, <span class="symbol">data:</span> &#123; <span class="symbol">confirm:</span> <span class="string">"Are you sure?"</span> &#125; )%&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;%= link_to(<span class="string">"Delete"</span>, group_path(group),    <span class="class"><span class="keyword">class</span>: "<span class="title">btn</span> <span class="title">btn</span>-<span class="title">sm</span> <span class="title">btn</span>-<span class="title">default</span>",</span></div><div class="line">                         <span class="symbol">method:</span> <span class="symbol">:delete</span>, <span class="symbol">data:</span> &#123; <span class="symbol">confirm:</span> <span class="string">"Are you sure?"</span> &#125; )%&gt;</div></pre></td></tr></table></figure>
 <p><u><em>这个erb和上面的写法区别，<code>method: :delete</code>和<code>:method =&gt; :delete</code>相同？</em></u></p>
 <p><u><em><code>:class =&gt; &quot;btn btn-danger&quot;</code>和<code>class: &quot;btn btn-sm btn-default&quot;</code>相同？</em></u></p>
 <h4 id="Step3-route"><a href="#Step3-route" class="headerlink" title="Step3:route"></a>Step3:route</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">resources <span class="symbol">:orders</span> <span class="keyword">do</span></div><div class="line">  member <span class="keyword">do</span></div><div class="line">    post <span class="symbol">:pay_with_alipay</span></div><div class="line">    post <span class="symbol">:pay_with_wechat</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div></pre></td></tr></table></figure>
@@ -529,7 +551,7 @@ rails g migration add_is_paid_to_order
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -540,7 +562,7 @@ rails g migration add_is_paid_to_order
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>

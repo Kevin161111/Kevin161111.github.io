@@ -97,7 +97,7 @@ before_action :admin_required
 <meta property="og:description" content="1.controllerbefore_action :authenticate_user!
 before_action :admin_required
 2.model2.1由于admin权限是全局的，所以应该去application_controller.rb中更改12345def admin_required  if !current_user.admin?  redirect_to &quot;/&quot;,">
-<meta property="og:updated_time" content="2017-03-20T14:34:55.000Z">
+<meta property="og:updated_time" content="2017-03-20T14:46:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Admin Panel">
 <meta name="twitter:description" content="1.controllerbefore_action :authenticate_user!
@@ -322,6 +322,28 @@ before_action :admin_required
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -509,7 +531,7 @@ before_action :admin_required
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -520,7 +542,7 @@ before_action :admin_required
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>

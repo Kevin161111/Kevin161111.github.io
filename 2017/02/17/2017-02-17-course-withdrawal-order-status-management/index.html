@@ -115,7 +115,7 @@
 按照理解，可以给order表单增加不同的栏位来进行管理，不过这牵扯到已下单到已付款一直到退货的逻辑流程和相关之间的关系，如">
 <meta property="og:image" content="http://user-image.logdown.io/user/23053/blog/21999/post/1426120/2H1GK9gTBe2mK9NnCi9g_OlKrqkd8QfqeMk8ek5zf_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-03%20%E4%B8%8B%E5%8D%883.15.13.png">
 <meta property="og:image" content="http://user-image.logdown.io/user/23053/blog/21999/post/1426120/Okz8R3qLQvWHGEzyTrKp_WX20170217-155524@2x.png">
-<meta property="og:updated_time" content="2017-03-20T14:34:40.000Z">
+<meta property="og:updated_time" content="2017-03-20T14:45:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="课程提取-订单状态管理">
 <meta name="twitter:description" content="课程提取-切换订单状态这课逻辑比较难，记忆就好了
@@ -349,6 +349,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -407,7 +429,7 @@
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> AASM</div><div class="line"></div><div class="line">aasm <span class="keyword">do</span></div><div class="line">state <span class="symbol">:order_placed</span>, <span class="symbol">initial:</span> <span class="literal">true</span></div><div class="line">state <span class="symbol">:paid</span></div><div class="line">state <span class="symbol">:shipping</span></div><div class="line">state <span class="symbol">:shipped</span></div><div class="line">state <span class="symbol">:order_cancelled</span></div><div class="line">state <span class="symbol">:good_returned</span></div><div class="line"></div><div class="line">event <span class="symbol">:make_payment</span> <span class="keyword">do</span></div><div class="line">  transitions <span class="symbol">from:</span> <span class="symbol">:order_placed</span>, <span class="symbol">to:</span> <span class="symbol">:paid</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">event <span class="symbol">:ship</span> <span class="keyword">do</span></div><div class="line">  transitions <span class="symbol">from:</span> <span class="symbol">:paid</span>, <span class="symbol">to:</span> <span class="symbol">:shipping</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">event <span class="symbol">:deliver</span> <span class="keyword">do</span></div><div class="line">  transitions <span class="symbol">from:</span> <span class="symbol">:shipping</span>, <span class="symbol">to:</span> <span class="symbol">:shipped</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">event <span class="symbol">:return_good</span> <span class="keyword">do</span></div><div class="line">  transitions <span class="symbol">from:</span> <span class="symbol">:shipped</span>, <span class="symbol">to:</span> <span class="symbol">:good_returned</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">event <span class="symbol">:cancell_order</span> <span class="keyword">do</span></div><div class="line">  transitions from : [<span class="symbol">:order_placed</span>, <span class="symbol">:paid</span>], <span class="symbol">to:</span> <span class="symbol">:order_cancelled</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>语法只能记忆了，逻辑还是通的：通过命名不同的state，让state遍历不同的event，在event中定义了不同state之间的切换。</p>
 <h4 id="step4：用aasm机制设定订单付款"><a href="#step4：用aasm机制设定订单付款" class="headerlink" title="step4：用aasm机制设定订单付款"></a>step4：用aasm机制设定订单付款</h4><p>Orders_controller.rb</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">...(略)</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">pay_with_alipay</span></span></div><div class="line">    @order = Order.find_by_token(params[<span class="symbol">:id</span>])</div><div class="line">    @order.set_payment_with!(<span class="string">"alipay"</span>)</div><div class="line">-   @order.pay!</div><div class="line">+   @order.make_payment!</div><div class="line"></div><div class="line">    redirect_to order_path(@order.token), <span class="symbol">notice:</span> <span class="string">"使用支付宝成功完成付款"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">pay_with_wechat</span></span></div><div class="line">    @order = Order.find_by_token(params[<span class="symbol">:id</span>])</div><div class="line">    @order.set_payment_with!(<span class="string">"wechat"</span>)</div><div class="line">-   @order.pay!</div><div class="line">+   @order.make_payment!</div><div class="line"></div><div class="line">    redirect_to order_path(@order.token), <span class="symbol">notice:</span> <span class="string">"使用微信支付成功完成付款"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  </div><div class="line">...(略)</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">...(略)</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">pay_with_alipay</span></span></div><div class="line">    @order = Order.find_by_token(params[<span class="symbol">:id</span>])</div><div class="line">    @order.set_payment_with!(<span class="string">"alipay"</span>)</div><div class="line">-   @order.pay!</div><div class="line">+   @order.make_payment!</div><div class="line"></div><div class="line">    redirect_to order_path(@order.token), <span class="symbol">notice:</span> <span class="string">"使用支付宝成功完成付款"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">pay_with_wechat</span></span></div><div class="line">    @order = Order.find_by_token(params[<span class="symbol">:id</span>])</div><div class="line">    @order.set_payment_with!(<span class="string">"wechat"</span>)</div><div class="line">-   @order.pay!</div><div class="line">+   @order.make_payment!</div><div class="line"></div><div class="line">    redirect_to order_path(@order.token), <span class="symbol">notice:</span> <span class="string">"使用微信支付成功完成付款"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">...(略)</div></pre></td></tr></table></figure>
 <p>Order.rb</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-    event <span class="symbol">:make_payment</span> <span class="keyword">do</span></div><div class="line">+    event <span class="symbol">:make_payment</span>, <span class="symbol">after_commit:</span> <span class="symbol">:pay!</span> <span class="keyword">do</span></div><div class="line">       transitions <span class="symbol">from:</span> <span class="symbol">:order_placed</span>, <span class="symbol">to:</span> <span class="symbol">:paid</span></div><div class="line">     <span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>git add commit</p>
@@ -537,7 +559,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -548,7 +570,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>

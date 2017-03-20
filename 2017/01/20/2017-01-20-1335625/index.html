@@ -101,7 +101,7 @@ class/id的不同class元素属性中的一种，id是元素唯一的编号
 一个元素可以有几个属性，但是只会有一个id
 &amp;lt;p&amp;gt;和 &amp;lt;br&amp;gt;的不同两者都是html文档中的元素，区别在于&amp;lt;p&amp;gt;定义的是段落
 &amp;lt;br&amp;gt;定义的是没有关">
-<meta property="og:updated_time" content="2017-03-20T14:35:55.000Z">
+<meta property="og:updated_time" content="2017-03-20T14:48:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML自学作业">
 <meta name="twitter:description" content="div/span的不同&amp;lt;div&amp;gt; 定义的是块，&amp;lt;span&amp;gt;是一个元素内部的块，可用于部分文本设置样式属性。
@@ -328,6 +328,28 @@ class/id的不同class元素属性中的一种，id是元素唯一的编号
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -376,8 +398,8 @@ class/id的不同class元素属性中的一种，id是元素唯一的编号
 <p>可以使用<code>rowspan</code>和<code>colspan</code>实现单元格合并。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;th rowspan=&quot;2&quot;&gt;Telephone:&lt;/th&gt;</div></pre></td></tr></table></figure>
 <p><code>&lt;table&gt;</code>中的元素css控制</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;table id=&quot;t01&quot;&gt;</div><div class="line">  &lt;tr&gt;</div><div class="line">    &lt;th&gt;Firstname&lt;/th&gt;</div><div class="line">    &lt;th&gt;Lastname&lt;/th&gt; </div><div class="line">    &lt;th&gt;Age&lt;/th&gt;</div><div class="line">  &lt;/tr&gt;</div><div class="line">  &lt;tr&gt;</div><div class="line">    &lt;td&gt;Eve&lt;/td&gt;</div><div class="line">    &lt;td&gt;Jackson&lt;/td&gt; </div><div class="line">    &lt;td&gt;94&lt;/td&gt;</div><div class="line">  &lt;/tr&gt;</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">table#t01 &#123;  ／／id标示控制</div><div class="line">    width: 100%; </div><div class="line">    background-color: #f1f1c1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;table id=&quot;t01&quot;&gt;</div><div class="line">  &lt;tr&gt;</div><div class="line">    &lt;th&gt;Firstname&lt;/th&gt;</div><div class="line">    &lt;th&gt;Lastname&lt;/th&gt;</div><div class="line">    &lt;th&gt;Age&lt;/th&gt;</div><div class="line">  &lt;/tr&gt;</div><div class="line">  &lt;tr&gt;</div><div class="line">    &lt;td&gt;Eve&lt;/td&gt;</div><div class="line">    &lt;td&gt;Jackson&lt;/td&gt;</div><div class="line">    &lt;td&gt;94&lt;/td&gt;</div><div class="line">  &lt;/tr&gt;</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">table#t01 &#123;  ／／id标示控制</div><div class="line">    width: 100%;</div><div class="line">    background-color: #f1f1c1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">table#t01 tr:nth-child(even) &#123; ／／偶数tr控制</div><div class="line">    background-color: #eee;</div><div class="line">&#125;</div><div class="line">table#t01 tr:nth-child(odd) &#123; //奇数tr控制</div><div class="line">    background-color: #fff;</div><div class="line">&#125;</div><div class="line">table#t01 th &#123;   //01中的th控制</div><div class="line">    color: white;</div><div class="line">    background-color: black;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
@@ -503,7 +525,7 @@ class/id的不同class元素属性中的一种，id是元素唯一的编号
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -514,7 +536,7 @@ class/id的不同class元素属性中的一种，id是元素唯一的编号
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
