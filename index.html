@@ -270,6 +270,169 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/23/ 2017-3-23-Some Basic Ruby/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/23/ 2017-3-23-Some Basic Ruby/" itemprop="url">
+                  Some Basic Ruby refers to ruby-doc-1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-23T13:42:32+08:00">
+                2017-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/23/ 2017-3-23-Some Basic Ruby/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/23/ 2017-3-23-Some Basic Ruby/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="String-interpolation"><a href="#String-interpolation" class="headerlink" title="String interpolation"></a>String interpolation</h3><p>String interpolation only works within double quotes:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">2.3.1 :001 &gt;</span> a = <span class="string">'ten'</span></div><div class="line"> =&gt; <span class="string">"ten"</span></div><div class="line"><span class="meta">2.3.1 :002 &gt;</span> <span class="string">"my favoutite number is <span class="subst">#&#123;a&#125;</span>!"</span></div><div class="line"> =&gt; <span class="string">"my favoutite number is ten!"</span></div><div class="line"><span class="meta">2.3.1 :003 &gt;</span></div><div class="line"><span class="comment">#eg</span></div><div class="line"><span class="meta">2.3.1 :029 &gt;</span> <span class="string">"john"</span> + <span class="string">"Doe"</span></div><div class="line"> =&gt; <span class="string">"johnDoe"</span></div><div class="line"><span class="meta">2.3.1 :030 &gt;</span> a = <span class="string">"Doe"</span></div><div class="line"> =&gt; <span class="string">"Doe"</span></div><div class="line"><span class="meta">2.3.1 :031 &gt;</span> <span class="string">"John<span class="subst">#&#123;a&#125;</span>"</span></div><div class="line"> =&gt; <span class="string">"JohnDoe"</span></div></pre></td></tr></table></figure>
+<h3 id="number"><a href="#number" class="headerlink" title="number"></a>number</h3><p>integer &amp; float</p>
+<p>float is a number that contains a decimal:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># division</span></div><div class="line"><span class="meta">2.3.1 :013 &gt;</span> <span class="number">15</span> / <span class="number">4</span></div><div class="line"> =&gt; <span class="number">3</span></div><div class="line"><span class="comment">#modulo</span></div><div class="line"><span class="meta">2.3.1 :014 &gt;</span> <span class="number">15</span> % <span class="number">3</span></div><div class="line"> =&gt; <span class="number">0</span></div><div class="line"><span class="meta">2.3.1 :015 &gt;</span> <span class="number">15</span> % <span class="number">4</span></div><div class="line"> =&gt; <span class="number">3</span></div><div class="line"><span class="comment">#float</span></div><div class="line"><span class="meta">2.3.1 :016 &gt;</span> <span class="number">15.0</span> / <span class="number">4</span></div><div class="line"> =&gt; <span class="number">3.75</span></div><div class="line"><span class="meta">2.3.1 :017 &gt;</span> <span class="string">'4'</span>.to_i</div><div class="line"> =&gt; <span class="number">4</span></div><div class="line"><span class="meta">2.3.1 :018 &gt;</span> <span class="string">'4'</span>.to_f</div><div class="line"> =&gt; <span class="number">4.0</span></div><div class="line"><span class="meta">2.3.1 :019 &gt;</span> <span class="string">"4 here test"</span>.to_f</div><div class="line"> =&gt; <span class="number">4.0</span></div><div class="line"><span class="meta">2.3.1 :020 &gt;</span> <span class="string">"here test 4"</span>.to_f</div><div class="line"> =&gt; <span class="number">0</span>.<span class="number">0</span></div></pre></td></tr></table></figure>
+<h3 id="Array-amp-Hash-index"><a href="#Array-amp-Hash-index" class="headerlink" title="Array &amp; Hash index"></a>Array &amp; Hash index</h3><p>elements within an array can be retrieved by their index,which starts at 0</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">2.3.1 :021 &gt;</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,][<span class="number">0</span>]</div><div class="line"> =&gt; <span class="number">1</span></div><div class="line"><span class="meta">2.3.1 :022 &gt;</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,][<span class="number">3</span>]</div><div class="line"> =&gt; <span class="number">4</span></div></pre></td></tr></table></figure>
+<p>also:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">2.3.1 :023 &gt;</span> &#123;<span class="symbol">:a</span> =&gt; <span class="string">'1'</span>, <span class="symbol">:b</span> =&gt; <span class="string">'2'</span>, <span class="symbol">:c</span> =&gt; <span class="string">'3'</span>&#125;[a]</div><div class="line"> =&gt; nil</div><div class="line"><span class="meta">2.3.1 :024 &gt;</span> &#123;<span class="symbol">:a</span> =&gt; <span class="string">'1'</span>, <span class="symbol">:b</span> =&gt; <span class="string">'2'</span>, <span class="symbol">:c</span> =&gt; <span class="string">'3'</span>&#125;[<span class="symbol">:a</span>]</div><div class="line"> =&gt; <span class="string">"1"</span></div></pre></td></tr></table></figure>
+<p>Array &amp; Hash map</p>
+<p>The map method can be used to create a new array based on the original array, but with the values modified by the supplied block:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">2.3.1 :032 &gt;</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"> =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="meta">2.3.1 :033 &gt;</span> arr.map &#123; <span class="params">|a|</span> <span class="number">2</span>*a&#125;</div><div class="line"> =&gt; [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]</div><div class="line"><span class="meta">2.3.1 :034 &gt;</span> arr</div><div class="line"> =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="meta">2.3.1 :035 &gt;</span> arr.map! &#123;<span class="params">|a|</span> <span class="number">2</span>*a &#125;</div><div class="line"> =&gt; [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]</div><div class="line"><span class="meta">2.3.1 :036 &gt;</span> arr</div><div class="line"> =&gt; [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]</div><div class="line"></div><div class="line"><span class="meta">2.3.1 :037 &gt;</span> [<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>].map(&amp;<span class="symbol">:to_i</span>)</div><div class="line"> =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="comment">#same as</span></div><div class="line"><span class="meta">2.3.1 :038 &gt;</span> [<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>].map&#123; <span class="params">|i|</span> i.to_i&#125;</div><div class="line"> =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/22/2017-03-22豆知识-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1719,163 +1882,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/05/前端笔记-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinHan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KevinHan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/05/前端笔记-2/" itemprop="url">
-                  前端笔记-2
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-05T17:47:47+08:00">
-                2017-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/05/前端笔记-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/05/前端笔记-2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h3><p>显示内容超过元素的时候如何显示</p>
-<p>参照：<a href="https://www.w3schools.com/cssref/pr_pos_overflow.asp" target="_blank" rel="external">overflow</a></p>
-<h3 id="如何指定到本页的链接"><a href="#如何指定到本页的链接" class="headerlink" title="如何指定到本页的链接"></a>如何指定到本页的链接</h3><p><code>&lt;a href=&quot;/&quot;&gt;&lt;/a&gt;</code>,这是指定到主页的写法，需要指定到本页相关的位置的话，只需要指定相关未知的id就可以了。就像这样<code>&lt;a href=&quot;#abc&quot;&gt;&lt;/a&gt;</code>，前提是你要给那个位置指定个id。</p>
-<p>换成指定class可以吗？应该可以（没试），不过id具有唯一性，更适合指定</p>
-<p>1.输入 man mkdir 会把mkdir命令解释一下，是做什么的。同理，输入man ＋ 命令可以获取这个命令的含义<br>2.rm -f -r 删除当前执行的文件</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1925,7 +1931,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">68</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
