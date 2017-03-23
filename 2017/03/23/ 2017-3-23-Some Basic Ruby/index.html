@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="KevinHan">
 <meta property="og:description" content="String interpolationString interpolation only works within double quotes:
 1234567891011122.3.1 :001 &amp;gt; a = &apos;ten&apos; =&amp;gt; &quot;ten&quot;2.3.1 :002 &amp;gt; &quot;my favoutite number is #&amp;#123;a&amp;#125;!&quot; =&amp;gt; &quot;my favouti">
-<meta property="og:updated_time" content="2017-03-23T06:35:57.000Z">
+<meta property="og:updated_time" content="2017-03-23T07:58:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Some Basic Ruby refers to ruby-doc-1 reviews">
 <meta name="twitter:description" content="String interpolationString interpolation only works within double quotes:
@@ -388,6 +388,39 @@
 <p>Array &amp; Hash map</p>
 <p>The map method can be used to create a new array based on the original array, but with the values modified by the supplied block:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">2.3.1 :032 &gt;</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"> =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="meta">2.3.1 :033 &gt;</span> arr.map &#123; <span class="params">|a|</span> <span class="number">2</span>*a&#125;</div><div class="line"> =&gt; [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]</div><div class="line"><span class="meta">2.3.1 :034 &gt;</span> arr</div><div class="line"> =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="meta">2.3.1 :035 &gt;</span> arr.map! &#123;<span class="params">|a|</span> <span class="number">2</span>*a &#125;</div><div class="line"> =&gt; [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]</div><div class="line"><span class="meta">2.3.1 :036 &gt;</span> arr</div><div class="line"> =&gt; [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]</div><div class="line"></div><div class="line"><span class="meta">2.3.1 :037 &gt;</span> [<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>].map(&amp;<span class="symbol">:to_i</span>)</div><div class="line"> =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="comment">#same as</span></div><div class="line"><span class="meta">2.3.1 :038 &gt;</span> [<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>].map&#123; <span class="params">|i|</span> i.to_i&#125;</div><div class="line"> =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div></pre></td></tr></table></figure>
+<h3 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h3><p>varibale scope</p>
+<p><strong>inner scope can access variables initialized in an outer scope,bu not vice versa</strong></p>
+<p>eg</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">x = <span class="number">0</span>        </div><div class="line"><span class="number">3</span>.times <span class="keyword">do</span></div><div class="line">  x += <span class="number">1</span></div><div class="line"><span class="keyword">end</span></div><div class="line">puts x</div><div class="line"><span class="comment">#prints 3 to the screen</span></div><div class="line"></div><div class="line">y = <span class="number">0</span></div><div class="line"><span class="number">3</span>.times <span class="keyword">do</span></div><div class="line">  y += <span class="number">1</span></div><div class="line">  x = y</div><div class="line"><span class="keyword">end</span></div><div class="line">puts x</div><div class="line"><span class="comment"># cant print, errors undefined local variable or method cuz x is not avaiavle as it is created with in the scope of the do/end block ,so its inner scope that's entirely outside of the execution flow.</span></div></pre></td></tr></table></figure>
+<p>variable type</p>
+<table>
+<thead>
+<tr>
+<th>constant variable</th>
+<th>NAME</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>global variable</td>
+<td>$name</td>
+</tr>
+<tr>
+<td>class variable</td>
+<td>@@name</td>
+</tr>
+<tr>
+<td>instance variable</td>
+<td>@name</td>
+</tr>
+<tr>
+<td>local variable</td>
+<td>name</td>
+</tr>
+</tbody>
+</table>
+<p> some other e.g..</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#ruby name.rb</span></div><div class="line">puts <span class="string">"What is your name?"</span></div><div class="line">name = gets.chomp</div><div class="line">puts <span class="string">"Hello "</span> + name</div><div class="line"></div><div class="line"><span class="comment">#ruby name2.rb</span></div><div class="line">puts <span class="string">"what is your first name?"</span></div><div class="line">first_name = gets.chomp</div><div class="line">puts <span class="string">"what is your last name?"</span></div><div class="line">last_name = gets.chomp</div><div class="line">puts <span class="string">"Great. so your full name is "</span> + first_name + <span class="string">" "</span> + last_name</div><div class="line"></div><div class="line"><span class="comment">#ruby age.rb notice .to_i </span></div><div class="line">puts <span class="string">"how old are you?"</span></div><div class="line">age = gets.chomp.to_i</div><div class="line">puts <span class="string">"in 10 years you will be:"</span></div><div class="line">puts age + <span class="number">10</span></div><div class="line">puts <span class="string">"in 20 years you will be:"</span></div><div class="line">puts age + <span class="number">20</span></div></pre></td></tr></table></figure>
       
     </div>
 
@@ -575,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#String-interpolation"><span class="nav-number">1.</span> <span class="nav-text">String interpolation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#number"><span class="nav-number">2.</span> <span class="nav-text">number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-amp-Hash-index"><span class="nav-number">3.</span> <span class="nav-text">Array & Hash index</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#String-interpolation"><span class="nav-number">1.</span> <span class="nav-text">String interpolation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#number"><span class="nav-number">2.</span> <span class="nav-text">number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-amp-Hash-index"><span class="nav-number">3.</span> <span class="nav-text">Array & Hash index</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Variable"><span class="nav-number">4.</span> <span class="nav-text">Variable</span></a></li></ol></div>
             
 
           </div>
