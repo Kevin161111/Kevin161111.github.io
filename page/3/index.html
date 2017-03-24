@@ -270,6 +270,333 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/22/前端笔记-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/22/前端笔记-1/" itemprop="url">
+                  前端笔记-1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-22T00:10:42+08:00">
+                2017-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/22/前端笔记-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/22/前端笔记-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前端写法，记录敲前端的写法："><a href="#前端写法，记录敲前端的写法：" class="headerlink" title="前端写法，记录敲前端的写法："></a>前端写法，记录敲前端的写法：</h2><p>大部分的功能都可以在<a href="https://www.w3schools.com/howto/default.asp" target="_blank" rel="external">W3C HowTo</a>找到答案，本来想多打几遍，不过时间不允许，想到最好的方法就是拿来用，就直接在里面找自己想要实现的功能吧。</p>
+<h3 id="页面元素的position"><a href="#页面元素的position" class="headerlink" title="页面元素的position"></a>页面元素的position</h3><p><a href="https://www.w3schools.com/css/css_positioning.asp" target="_blank" rel="external">css position</a></p>
+<h3 id="边框无色写法"><a href="#边框无色写法" class="headerlink" title="边框无色写法"></a>边框无色写法</h3><p>border-color:transparent;</p>
+<h3 id="图片相关"><a href="#图片相关" class="headerlink" title="图片相关"></a>图片相关</h3><p><a href="https://www.w3schools.com/css/css_rwd_images.asp" target="_blank" rel="external">responsive web design</a></p>
+<p>给图片加个class:img-responsive 实现随页面变动的样式</p>
+<h3 id="z-index是什么？"><a href="#z-index是什么？" class="headerlink" title="z-index是什么？"></a>z-index是什么？</h3><p><a href="https://www.w3schools.com/cssref/pr_pos_z-index.asp" target="_blank" rel="external">元素的层叠</a></p>
+<p>这个有什么用呢？如果有元素是position:fixed，就有用了，因为它是页面固定的</p>
+<h3 id="li前面小圆点的删除"><a href="#li前面小圆点的删除" class="headerlink" title="li前面小圆点的删除"></a>li前面小圆点的删除</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">li</span>&#123;</div><div class="line">  <span class="attribute">list-style</span>:none;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以消除小圆点</p>
+<h3 id="dropdown"><a href="#dropdown" class="headerlink" title="dropdown"></a>dropdown</h3><p>dropdown 的内置padding是左右20px</p>
+<p>所以它的width至少要150px，否则会出现乱位置。</p>
+<h3 id="google-material-icon"><a href="#google-material-icon" class="headerlink" title="google material icon"></a>google material icon</h3><p>在applicaiton.html.erb的head里面加入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"https://fonts.googleapis.com/icon?family=Material+Icons"</span></span></div><div class="line">    <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</div></pre></td></tr></table></figure>
+<p>实现google icon的使用</p>
+<h4 id="material-icon-size"><a href="#material-icon-size" class="headerlink" title="material icon size"></a>material icon size</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">/* Rules for sizing the icon. */</span></div><div class="line"><span class="selector-class">.material-icons</span><span class="selector-class">.md-18</span> &#123; <span class="attribute">font-size</span>: <span class="number">18px</span>; &#125;</div><div class="line"><span class="selector-class">.material-icons</span><span class="selector-class">.md-24</span> &#123; <span class="attribute">font-size</span>: <span class="number">24px</span>; &#125;</div><div class="line"><span class="selector-class">.material-icons</span><span class="selector-class">.md-36</span> &#123; <span class="attribute">font-size</span>: <span class="number">36px</span>; &#125;</div><div class="line"><span class="selector-class">.material-icons</span><span class="selector-class">.md-48</span> &#123; <span class="attribute">font-size</span>: <span class="number">48px</span>; &#125;</div><div class="line"></div><div class="line"><span class="comment">/* Rules for using icons as black on a light background. */</span></div><div class="line"><span class="selector-class">.material-icons</span><span class="selector-class">.md-dark</span> &#123; <span class="attribute">color</span>: <span class="built_in">rgba</span>(0, 0, 0, 0.54); &#125;</div><div class="line"><span class="selector-class">.material-icons</span><span class="selector-class">.md-dark</span><span class="selector-class">.md-inactive</span> &#123; <span class="attribute">color</span>: <span class="built_in">rgba</span>(0, 0, 0, 0.26); &#125;</div><div class="line"></div><div class="line"><span class="comment">/* Rules for using icons as white on a dark background. */</span></div><div class="line"><span class="selector-class">.material-icons</span><span class="selector-class">.md-light</span> &#123; <span class="attribute">color</span>: <span class="built_in">rgba</span>(255, 255, 255, 1); &#125;</div><div class="line"><span class="selector-class">.material-icons</span><span class="selector-class">.md-light</span><span class="selector-class">.md-inactive</span> &#123; <span class="attribute">color</span>: <span class="built_in">rgba</span>(255, 255, 255, 0.3); &#125;</div></pre></td></tr></table></figure>
+<p><code>&lt;i class=&quot;material-icons md-18&quot;&gt;face&lt;/i&gt;</code></p>
+<p>不过这个太小了，这么写明细变大了</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.material-icons</span>&#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">58px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者这样写</p>
+<p><code>&lt;i class=&quot;fa fa-cloud&quot; style=&quot;font-size:60px;color:lightblue;text-shadow:2px 2px 4px #000000;&quot;&gt;&lt;/i&gt;</code></p>
+<h3 id="font-icon与文字如何横向居中"><a href="#font-icon与文字如何横向居中" class="headerlink" title="font-icon与文字如何横向居中"></a>font-icon与文字如何横向居中</h3><p><a href="https://codepen.io/Kevin1111/pen/PpwLyM" target="_blank" rel="external">横向居中codepen</a></p>
+<p>这个写法多看几遍就记住了。层次还是比较清晰的。</p>
+<h3 id="cursor-pointer是什么"><a href="#cursor-pointer是什么" class="headerlink" title="cursor: pointer是什么"></a>cursor: pointer是什么</h3><p><a href="https://www.w3schools.com/cssref/pr_class_cursor.asp" target="_blank" rel="external">光标放上去的样式</a></p>
+<h3 id="dl-dt-dd是什么"><a href="#dl-dt-dd是什么" class="headerlink" title="dl dt dd是什么"></a>dl dt dd是什么</h3><p>description list</p>
+<p><a href="https://www.w3schools.com/tags/tag_dt.asp" target="_blank" rel="external">描述列表</a></p>
+<h3 id="变动的searchbar"><a href="#变动的searchbar" class="headerlink" title="变动的searchbar"></a>变动的searchbar</h3><p><a href="https://www.w3schools.com/howto/howto_css_animated_search.asp" target="_blank" rel="external">animated searchbar</a></p>
+<h3 id="登录界面相关"><a href="#登录界面相关" class="headerlink" title="登录界面相关"></a>登录界面相关</h3><p><a href="https://www.w3schools.com/howto/howto_css_login_form.asp" target="_blank" rel="external">login form</a></p>
+<p>](<a href="https://www.w3schools.com/css/css_rwd_images.asp" target="_blank" rel="external">https://www.w3schools.com/css/css_rwd_images.asp</a>)</p>
+<h3 id="change-background-color-and-padding-of-navbar-on-scroll"><a href="#change-background-color-and-padding-of-navbar-on-scroll" class="headerlink" title="change background color and padding of navbar on scroll"></a>change background color and padding of navbar on scroll</h3><p><a href="https://www.w3schools.com/bootstrap/bootstrap_ref_js_affix.asp" target="_blank" rel="external">scroll affix</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/21/2017-02-21-2-20-full-stack-logs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/21/2017-02-21-2-20-full-stack-logs/" itemprop="url">
+                  2/20全栈日志
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-21T01:47:00+08:00">
+                2017-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/orid/" itemprop="url" rel="index">
+                    <span itemprop="name">orid</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/21/2017-02-21-2-20-full-stack-logs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/21/2017-02-21-2-20-full-stack-logs/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="2-20-全栈日记-加班，写点别的"><a href="#2-20-全栈日记-加班，写点别的" class="headerlink" title="2/20-全栈日记-加班，写点别的"></a>2/20-全栈日记-加班，写点别的</h2><h2 id="objection"><a href="#objection" class="headerlink" title="objection"></a>objection</h2><blockquote>
+<p>关于今天的课程，你记得什么？<br>完成了什么？</p>
+</blockquote>
+<p>今天除了听Xdite老师的课程之外，加班在做别的事。听了老师的课，对课程有了更大的信心。对之前两个月的学习做了一个复盘，也明白了老师设置课程的初心。</p>
+<h2 id="Reflective"><a href="#Reflective" class="headerlink" title="Reflective"></a>Reflective</h2><blockquote>
+<p>你要如何形容今天的情绪<br>今天的高峰是什么？<br>今天的低点是什么？</p>
+</blockquote>
+<p>平静，听到老师关于教学的后续很有信心。</p>
+<h2 id="Interpretive"><a href="#Interpretive" class="headerlink" title="Interpretive"></a>Interpretive</h2><blockquote>
+<p>我们今天学到了什么？<br>今天最重要的领悟是什么？</p>
+</blockquote>
+<p>最大的领悟其实来自想通了一件事。成为专家，只要坚持足够的时间积累就可以了。这句话有毒。大部分都知道，而且很多都做了，结果为什么后面没成为专家呢？因为长久以来坚持做的东西都是自己熟悉的呀！并没有突破舒适区呀？刻意练习的本质除了刻意，另外就是练习的内容要进入学习区，也即是老师讲的觉得有点难，但是可以学，没有进入太多的挫折感。<br>这让我想到课程学习上不要一直看别人的教程，想办法变成自己的，写出成为自己的东西。一旦有自己发现自己想要看别人的教程，就是在走简单抄教程的路上，没有自己的思索，做伸手党的后果就是伸手党陷阱：别人给的是解决了自己的问题，但同时也主动丧失了自我思索，自我检索的能力！</p>
+<h2 id="Desicisional"><a href="#Desicisional" class="headerlink" title="Desicisional"></a>Desicisional</h2><blockquote>
+<p>我们会如何用一句话形容今天的工作？<br>有哪些工作需要明天继续努力？</p>
+</blockquote>
+<p>明天要抓时间做魔改大赛。Xdite说时间不够是因为不是刚需！太精辟了，写下来贴到了电脑上。践行才是王道。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/20/2017-02-20-what-is-a-userstory/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1589,353 +1916,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/16/2017-02-16-2-15-full-stack-logs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinHan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KevinHan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/16/2017-02-16-2-15-full-stack-logs/" itemprop="url">
-                  2/15全栈日志
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-16T23:23:00+08:00">
-                2017-02-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编程/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/16/2017-02-16-2-15-full-stack-logs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/16/2017-02-16-2-15-full-stack-logs/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="2-15-全栈日记-订单支付"><a href="#2-15-全栈日记-订单支付" class="headerlink" title="2/15-全栈日记-订单支付"></a>2/15-全栈日记-订单支付</h2><h2 id="objection"><a href="#objection" class="headerlink" title="objection"></a>objection</h2><blockquote>
-<p>关于今天的课程，你记得什么？<br>完成了什么？</p>
-</blockquote>
-<p>关于今天的课程，用户在下单后的订单界面会实现通过微信和支付宝支付的功能</p>
-<p>通过给order的栏位增加payment_method和is_paid两个栏位来实现</p>
-<p>完成了课程并写了<a href="http://kevinhan161111-blog.logdown.com/posts/1417794-courses-withdrawn-in-order-to-pay" target="_blank" rel="external">订单支付提取</a>。晚上和陈波商量了下魔改大赛的landingpage和怎么协作的事。</p>
-<p>最后我们决定先学会课程，周末一起进行前端修改</p>
-<h2 id="Reflective"><a href="#Reflective" class="headerlink" title="Reflective"></a>Reflective</h2><blockquote>
-<p>你要如何形容今天的情绪<br>今天的高峰是什么？<br>今天的低点是什么？</p>
-</blockquote>
-<p>今天的心情不错，这个订单支付和之前的MVC架构一样，通过分析课程进一步加深了印象</p>
-<p>因为前两天去珠海出差，没有写logdown，要想想怎么形成每天写logdown的习惯。</p>
-<h2 id="Interpretive"><a href="#Interpretive" class="headerlink" title="Interpretive"></a>Interpretive</h2><blockquote>
-<p>我们今天学到了什么？<br>今天最重要的领悟是什么？</p>
-</blockquote>
-<p>进一步加深了MCV架构的理解。有点后悔自己之前怎么没写课程练习，不过那都是自己没有积累的结果。现在形成了自己的套路就把这个套路在购物网站第2遍的时候好好练习下。</p>
-<h2 id="Desicisional"><a href="#Desicisional" class="headerlink" title="Desicisional"></a>Desicisional</h2><blockquote>
-<p>我们会如何用一句话形容今天的工作？<br>有哪些工作需要明天继续努力？</p>
-</blockquote>
-<p>今天的工作很不错，也和陈波决定了魔改的langdingpage，我们俩都是上班很忙，下班才有时间做，不过既然决定了目标，就撸起袖子加油干！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/16/2017-02-16-1424335/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinHan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KevinHan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/16/2017-02-16-1424335/" itemprop="url">
-                  课程提取-订单通知邮件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-16T22:27:00+08:00">
-                2017-02-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编程/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/16/2017-02-16-1424335/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/16/2017-02-16-1424335/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="寄送订单通知信"><a href="#寄送订单通知信" class="headerlink" title="寄送订单通知信"></a>寄送订单通知信</h2><p>实现的功能：使用者下单后会收到一封订单确认信件</p>
-<p>如何实现？</p>
-<h3 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h3><p><code>rails g mailer OrderMailer</code></p>
-<p>mailer这个东西就当是model吧，不过后面为什么是大写？难道除了MVC这种建立方式其他的都要大写？</p>
-<p>appliacatio_mailer.rb中加入</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ApplicationMailer</span> &lt; ActionMailer::Base</span></div><div class="line">-  default <span class="symbol">from:</span> <span class="string">"from@example.com"</span></div><div class="line">+  default <span class="symbol">from:</span> <span class="string">"service@jdstore.com"</span></div><div class="line">   layout <span class="string">'mailer'</span></div><div class="line"> <span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p><em>里面有 layout ‘mailer’，layout怎么又跑这里来？难道mailer没有controller？还是说写在两个地方都可以？</em></p>
-<p>default设定发信的服务器</p>
-<h3 id="step2-order-mailer-rb中加入"><a href="#step2-order-mailer-rb中加入" class="headerlink" title="step2:order_mailer.rb中加入"></a>step2:order_mailer.rb中加入</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OrderMailer</span> &lt; ApplicationMailer</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">notify_order_placed</span><span class="params">(order)</span></span></div><div class="line">    @order  = order</div><div class="line">    @user   = order.user</div><div class="line">    @product_lists = @order.product_lists</div><div class="line"></div><div class="line">    mail(<span class="symbol">to:</span> @user.email , <span class="symbol">subject:</span> <span class="string">"[JDstore] 感谢您完成本次的下单，以下是您这次购物明细 <span class="subst">#&#123;order.token&#125;</span>"</span>)</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>果然是model的功能，里面定义了实现的方式和内容</p>
-<p><code>touch app/views/order_mailer/notify_order_placed.html.erb</code></p>
-<p><em>注意这个名称，notify_order_placed和上面的定义有关系吗？</em></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-12"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span></div><div class="line">      订单明细 <span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">small</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("订单连结", <span class="attr">order_url</span>(@<span class="attr">order.token</span>)) %&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">small</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-bordered"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">thead</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">th</span> <span class="attr">width</span>=<span class="string">"70%"</span>&gt;</span>商品明细<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>单价<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>数量<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">th</span>&gt;</span>小记<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">%</span> @<span class="attr">product_lists.each</span> <span class="attr">do</span> |<span class="attr">product_list</span>| %&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">%=</span> <span class="attr">product_list.product_name</span> %&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">%=</span> <span class="attr">product_list.product_price</span> %&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">%=</span> <span class="attr">product_list.quantity</span> %&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">              <span class="tag">&lt;<span class="name">%=</span> <span class="attr">product_list.quantity</span> * <span class="attr">product_list.product_price</span> %&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></div><div class="line"></div><div class="line">      <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"total group clearfix"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">h4</span> <span class="attr">class</span>=<span class="string">"pull-right"</span>&gt;</span></div><div class="line">        总计 <span class="tag">&lt;<span class="name">%=</span> @<span class="attr">order.total</span> %&gt;</span> CNY</div><div class="line">      <span class="tag">&lt;/<span class="name">h4</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;<span class="name">hr</span>&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;<span class="name">h2</span>&gt;</span> 寄送资讯 <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-striped table-bordered"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> 订购人 <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">%=</span> @<span class="attr">order.billing_name</span> %&gt;</span> - <span class="tag">&lt;<span class="name">%=</span> @<span class="attr">order.billing_address</span> %&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span> 收件者 <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">%=</span> @<span class="attr">order.shipping_name</span> %&gt;</span> - <span class="tag">&lt;<span class="name">%=</span> @<span class="attr">order.shipping_address</span> %&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>step3：通过letter_opener这个gem来预览邮件</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+ gem <span class="string">'letter_opener'</span>, <span class="symbol">group:</span> <span class="symbol">:development</span></div></pre></td></tr></table></figure>
-<p><em>group: :development应该是加入development的模式。</em></p>
-<p>然后config/environments/development.rb中加入</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">...(略)</div><div class="line">+ config.action_mailer.default_url_options = &#123; <span class="symbol">host:</span> <span class="string">'localhost:3000'</span> &#125;</div><div class="line">+ config.action_mailer.delivery_method = <span class="symbol">:letter_opener</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>看不懂，应该是development模式的内容</p>
-<p><code>bundle install</code>然后重启rails s</p>
-<h3 id="Step4-通过console-测试预览"><a href="#Step4-通过console-测试预览" class="headerlink" title="Step4:通过console 测试预览"></a>Step4:通过console 测试预览</h3><p><code>OrderMailer.notify_order_placed(Order.last).deliver!</code>在console下运行，就会弹出信件的预览了，</p>
-<h3 id="Step5-在订单建立是寄通知信"><a href="#Step5-在订单建立是寄通知信" class="headerlink" title="Step5:在订单建立是寄通知信"></a>Step5:在订单建立是寄通知信</h3><p>修改orders_controller.rb</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OrdersController</span> &lt; ApplicationController</span></div><div class="line">  before_action <span class="symbol">:authenticate_user!</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">create</span></span></div><div class="line">    @order = Order.new(order_params)</div><div class="line">    @order.user = current_user</div><div class="line">    @order.total = current_cart.total_price</div><div class="line"></div><div class="line">    <span class="keyword">if</span> @order.save</div><div class="line"></div><div class="line">      current_cart.cart_items.each <span class="keyword">do</span> <span class="params">|cart_item|</span></div><div class="line">        product_list = ProductList.new</div><div class="line">        product_list.order = @order</div><div class="line">        product_list.product_name = cart_item.product.title</div><div class="line">        product_list.product_price = cart_item.product.price</div><div class="line">        product_list.quantity = cart_item.quantity</div><div class="line">        product_list.save</div><div class="line">      <span class="keyword">end</span></div><div class="line"> +    current_cart.clean!</div><div class="line"> +    OrderMailer.notify_order_placed(@order).deliver!</div><div class="line"></div><div class="line">      redirect_to order_path(@order.token)</div><div class="line">    <span class="keyword">else</span></div><div class="line">      render <span class="string">'carts/checkout'</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1985,7 +1965,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

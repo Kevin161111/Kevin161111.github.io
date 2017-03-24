@@ -270,6 +270,378 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/25/2017-3-25gitrebase&gitreset/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/25/2017-3-25gitrebase&gitreset/" itemprop="url">
+                  git操作-1 reset%rebase
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T02:17:46+08:00">
+                2017-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/25/2017-3-25gitrebase&gitreset/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/25/2017-3-25gitrebase&gitreset/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="git-reset-reset-current-HEAD-to-the-specified-state"><a href="#git-reset-reset-current-HEAD-to-the-specified-state" class="headerlink" title="git reset-reset current HEAD to the specified state"></a><a href="https://git-scm.com/docs/git-reset" target="_blank" rel="external">git reset</a>-reset current HEAD to the specified state</h2><h3 id="HEAD-是什么？"><a href="#HEAD-是什么？" class="headerlink" title="HEAD 是什么？"></a>HEAD 是什么？</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">* <span class="number">573</span>de5b (HEAD -&gt; test, heroku/master, ch08) move sqlite3 to dev group &amp; add pg to production group</div><div class="line">* <span class="number">5403</span>c96 (origin/ch08) render partial with collection</div><div class="line">* <span class="number">6</span>cba643 use <span class="keyword">self</span> delimit helper</div><div class="line">* <span class="number">299460</span>e (origin/ch07, ch07) implement my post</div><div class="line">* 099f562 implement my groups</div><div class="line">* d875c99 (origin/ch06, ch06) <span class="keyword">when</span> created a group, join it automatically</div><div class="line">* bdd59e2 join &amp; quit group action</div><div class="line">* <span class="number">653</span>d357 join <span class="keyword">or</span> quit group</div></pre></td></tr></table></figure>
+<p>第一行那个HEAD就是对应目前的commit位置，它是HEAD~0，它下面那个commit是HEAD~1,依次下排</p>
+<h3 id="如果commit错了，想撤回"><a href="#如果commit错了，想撤回" class="headerlink" title="如果commit错了，想撤回"></a>如果commit错了，想撤回</h3><p><code>git reset -- soft HEAD~1</code>结果如下：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">* <span class="number">573</span>de5b (heroku/master, ch08) move sqlite3 to dev group &amp; add pg to production group</div><div class="line">* <span class="number">5403</span>c96 (HEAD -&gt; test, origin/ch08) render partial with collection</div><div class="line">* <span class="number">6</span>cba643 use <span class="keyword">self</span> delimit helper</div><div class="line">* <span class="number">299460</span>e (origin/ch07, ch07) implement my post</div><div class="line">* 099f562 implement my groups</div><div class="line">* d875c99 (origin/ch06, ch06) <span class="keyword">when</span> created a group, join it automatically</div><div class="line">* bdd59e2 join &amp; quit group action</div><div class="line">* <span class="number">653</span>d357 join <span class="keyword">or</span> quit group</div></pre></td></tr></table></figure>
+<p>如果要撤销2个就写HEAD~2，结果如下：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">* <span class="number">573</span>de5b (heroku/master, ch08) move sqlite3 to dev group &amp; add pg to production group</div><div class="line">* <span class="number">5403</span>c96 (origin/ch08) render partial with collection</div><div class="line">* <span class="number">6</span>cba643 use <span class="keyword">self</span> delimit helper</div><div class="line">* <span class="number">299460</span>e (HEAD -&gt; test, origin/ch07, ch07) implement my post</div><div class="line">* 099f562 implement my groups</div><div class="line">* d875c99 (origin/ch06, ch06) <span class="keyword">when</span> created a group, join it automatically</div><div class="line">* bdd59e2 join &amp; quit group action</div><div class="line">* <span class="number">653</span>d357 join <span class="keyword">or</span> quit group</div></pre></td></tr></table></figure>
+<p>可以看到只是HEAD指向的位置不同了，代码并没有改变</p>
+<p>说明这只是撤销commit而已。</p>
+<h3 id="如果要改变呢？看下面"><a href="#如果要改变呢？看下面" class="headerlink" title="如果要改变呢？看下面"></a>如果要改变呢？看下面</h3><ul>
+<li><p>–mixed：默认参数，<code>git reset --mixed HEAD~1</code>等同于<code>git reset HEAD~1</code>。实现的功能是撤销commit的同时，撤销git add .的内容</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tKfTcgy1fdyfqy8lj9j30vk06q40z.jpg" alt=""></p>
+</li>
+</ul>
+<ul>
+<li>–soft: 撤销commit ,不撤销 git add.</li>
+<li>—hard: 删除改动的代码，撤销commit ，撤销 git add. <strong>回到上次commit 的状态</strong></li>
+</ul>
+<p>除了用在commit上，还可以这么用：比如误删了文件，也是可以通过<code>git reset -- hard HEAD~2</code>找回来的。里面的HEAD~2指的是你要返回的位置，要调整的，比如3、4、5。。。。当然这个HEAD~n，也是可以用前面的hash代替的，比如<code>git reset -- hard 6cba643</code></p>
+<h3 id="修改commit的注释："><a href="#修改commit的注释：" class="headerlink" title="修改commit的注释："></a>修改commit的注释：</h3><ul>
+<li><code>git commit --amend</code>会进入vim编辑器，直接改最上面的就好了。ESC退出编辑模式进入命令模式，输入<code>:wq</code>存盘退出</li>
+</ul>
+<h2 id="git-rebase-Reapply-commits-on-top-of-another-base-tip"><a href="#git-rebase-Reapply-commits-on-top-of-another-base-tip" class="headerlink" title="git rebase-Reapply commits on top of another base tip"></a><a href="https://git-scm.com/docs/git-rebase" target="_blank" rel="external">git rebase</a>-Reapply commits on top of another base tip</h2><p>如果不是撤销commit,而是对commit 进行删除或者合并（你的commit 里面有密码，不想让别人看到），就要用到<code>git rebase</code></p>
+<ul>
+<li>git rebase -i  </li>
+<li>git rebase onto</li>
+</ul>
+<h3 id="git-rebase-i-合并commit"><a href="#git-rebase-i-合并commit" class="headerlink" title="git rebase -i 合并commit"></a>git rebase -i 合并commit</h3><p>比如合并 d875c99到653d357</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">* 099f562 implement my groups</div><div class="line">* d875c99 (origin/ch06, ch06) <span class="keyword">when</span> created a group, join it automatically</div><div class="line">* bdd59e2 join &amp; quit group action</div><div class="line">* <span class="number">653</span>d357 join <span class="keyword">or</span> quit group</div><div class="line">* <span class="number">4941</span>fd2 implement is_member_of?(group)</div><div class="line">* <span class="number">42</span>ae893  implement group relation</div></pre></td></tr></table></figure>
+<p>输入 <code>git rebase -i 42ae893</code> <em>hash值一般为要合并对象下2个</em></p>
+<p>进入vim修改你要合并的commit 前面的pick 为fixup 就像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">pick 4941fd2 implement is_member_of?(group)</div><div class="line">fixup 653d357 join or quit group</div><div class="line">fixup bdd59e2 join &amp; quit group action</div><div class="line">fixup d875c99 when created a group, join it automatically</div><div class="line">pick 099f562 implement my groups</div><div class="line">pick 299460e implement my post</div><div class="line">pick 6cba643 use self delimit helper</div><div class="line">pick f01fba2 test rebase</div></pre></td></tr></table></figure>
+<p>保存退出。得到：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">* b207d13 implement is_member_of?(group)</div><div class="line"><span class="params">| * 573de5b (heroku/master, ch08) move sqlite3 to dev group &amp; add pg to production group</span></div><div class="line">| * <span class="number">5403</span>c96 (origin/ch08) render partial with collection</div><div class="line"><span class="params">| * 6cba643 use <span class="keyword">self</span> delimit helper</span></div><div class="line">| * <span class="number">299460</span>e (origin/ch07, ch07) implement my post</div><div class="line"><span class="params">| * 099f562 implement my groups</span></div><div class="line">| * d875c99 (origin/ch06, ch06) <span class="keyword">when</span> created a group, join it automatically</div><div class="line"><span class="params">| * bdd59e2 join &amp; quit group action</span></div><div class="line">| * <span class="number">653</span>d357 join <span class="keyword">or</span> quit group</div><div class="line"><span class="params">| * 4941fd2 implement is_member_of?(group)</span></div><div class="line">|/</div><div class="line">* <span class="number">42</span>ae893  implement group relation</div></pre></td></tr></table></figure>
+<p>这个过程只是合并commit ,并没有修改代码</p>
+<h3 id="git-rebase-onto-HEAD-3-HEAD-1"><a href="#git-rebase-onto-HEAD-3-HEAD-1" class="headerlink" title="git rebase onto HEAD~3 HEAD~1"></a>git rebase onto HEAD~3 HEAD~1</h3><p>会直接删掉两个commit 和其中的代码，当然也可以用hash、branchname。</p>
+<h3 id="git-push-u-origin-master"><a href="#git-push-u-origin-master" class="headerlink" title="git push -u origin master"></a>git push -u origin master</h3><p>The <code>-u</code> tells Git to remember the parameters, so that next time we can simply run <code>git push</code> and Git will know what to do.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/25/2017-3-24关于commit /">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/25/2017-3-24关于commit /" itemprop="url">
+                  How to write a git commit message
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T00:22:13+08:00">
+                2017-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/25/2017-3-24关于commit /#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/25/2017-3-24关于commit /" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="关于commit"><a href="#关于commit" class="headerlink" title="关于commit"></a>关于commit</h3><p>详细的介绍在这里<a href="https://chris.beams.io/posts/git-commit/" target="_blank" rel="external">How to write a git commit message</a></p>
+<ol>
+<li>Seperate subject from body with a blank line</li>
+<li>Limit the subject line to 50 characters</li>
+<li>Capitalize the subject line</li>
+<li>Do not end the subject line with a period</li>
+<li>Use the imperative mood in the subject line</li>
+<li>wrap the body at 72 characters</li>
+<li>Use the body to explain <em>what</em> and <em>why</em> vs.<em>how</em></li>
+</ol>
+<p>常用参考：</p>
+<ul>
+<li><p>Add  permission check on show page</p>
+</li>
+<li><p>Implement  post pagination with will_paginate</p>
+</li>
+<li><p>Install  gem pry  device</p>
+</li>
+<li><p>Create  </p>
+</li>
+<li><p>Replace form with simple_form bootstrape templete</p>
+</li>
+<li><p>Move  form to partial</p>
+</li>
+<li><p>Style</p>
+</li>
+<li><p>Show   creator information</p>
+</li>
+<li><p>Fix  bugs about search</p>
+<p>​</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/23/ 2017-3-23-Some Basic Ruby/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1584,337 +1956,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/09/学习的套路/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinHan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KevinHan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/09/学习的套路/" itemprop="url">
-                  学习的套路-脑科学认知心理学相关
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-09T00:10:21+08:00">
-                2017-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/元学习课/" itemprop="url" rel="index">
-                    <span itemprop="name">元学习课</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/09/学习的套路/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/09/学习的套路/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>认知的过程是记忆的过程，是形成习惯回路的过程，是用已知解释未知的过程。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/09/学习的套路/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/07/2017-03-07-1516842/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinHan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KevinHan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/07/2017-03-07-1516842/" itemprop="url">
-                  成为一个有目标的学习者-转载
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T01:28:00+08:00">
-                2017-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/其他/" itemprop="url" rel="index">
-                    <span itemprop="name">其他</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/07/2017-03-07-1516842/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/07/2017-03-07-1516842/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><em>这篇文章转载于公众号代码家，贴在这里是想让自己经常看看。有些内容做了修改，文章的前提是这个技术你已经入门了</em></p>
-<p>我一个好朋友，他在一家国内较大借贷平台做前端工程师，每天五点起床，早早的到公司，开始读一些经典的前端类的书籍。起的这么早的动力是觉得自己还没能够掌握前端的很多细节，真正在做开发的时候，依然会忘记之前看到过的东西，总是下意识的告诉自己：『可能我还处在入门水平』。</p>
-<p>长此以往，起的越来越早，中午同事休息联机玩儿手游的时候，也不放过时间去看书，压力也随之变大。开始否认自己在转行前端之前的时光，感觉都被浪费掉了似的，越是如此，越是无法挣脱，逐步的走到死胡同中，彷徨，痛苦。</p>
-<p>他很痛苦，希望我能提些自己的看法。</p>
-<p>我想，很多人都曾有过这种时光。就好比高考前的各种模拟试题一样，总有一种人，喜欢在做模拟试题前，把整本书都先过一遍。这样真的有意义吗？我认为回报是很小的。因为你定了一个有些迂回和逃避性质的目标。当入门阶段已经走过以后，你没有必要再从头开始，这是一个会浪费时间、消耗体力的目标，只会让你丧失学习的动力，因为你不再会有比第一次学会更强的正向反馈了，当你耗费大量时间和体力过了一遍以后，依然无所得，这是多么令人挫败的一个过程啊。</p>
-<p>那问题来了，一旦入门后，如何得到一个更有激励性质的正反馈呢？</p>
-<p>依然是定一个目标，定一个你从未尝试或达到过的目标，让新的目标去刺激你的多巴胺和肾上腺素，让你对某一个东西、技术产生持续的亢奋，从而无形中成为终生学习者。</p>
-<p>对于技术人来说，新的目标可以是做一个解决自己生活中遇到问题的小产品，努力做到 1000 日活，做一个开源项目，努力得到 1000 个 Star，做一个小工具，努力赚到 1000 人民币，做一个小社群，努力拥有 1000 个注册用户，或者开一篇博客，写一个公众号，努力做到 1000 阅读。</p>
-<p>这些都是可以成为刺激你的下一个源泉。很多很能折腾的人，总是在持续不断的折腾，就是因为他们总是在不断的接收正反馈，他们在不断的认可自己的过程中。</p>
-<p><strong>不要因为别人说一本书好，或是一篇文章，一类技术好，就去学它，其实根本没有必要，因为你学它的动力其实是伪动力，学有所用才是可能持续学习的动力，主观的坚持不是可持续的真正动力。</strong><br><em>先学好Rails吧</em><br>我其实一直是很不主张去读其他人的技术文章，至少大多数技术文章都是对你无益的，读的越多，你越是会产生彷徨和焦虑，感觉自己没有成长，缺少自信。缺少自信的表现是你会恐惧未来遇到的新问题，你还是得大量依赖搜索引擎去读几百篇博客去解决一个问题，你没有自己真正的独立思考，你只解决了一个眼前问题，你没有办法套用到千千万万个问题上，你无法亢奋自己的神经，而产生持续的学习和研究欲望。</p>
-<p>大量读别人的文章，其实你也无法得到一个独立解决问题的方法论，你会滋生思想的懒惰，很多美好的事物和机会，也会和你擦身而过。</p>
-<p>有的时候，读其他人的技术文章也会让自己产生一种诡异的满足感，你会感到我貌似很多东西都会，只是有些不熟罢了，真的如此吗？</p>
-<p>举个自己的例子，我当初在准备炒股票前，在雪球上读了很多文章，还专门把牛人们分成了一组，感觉自己差不多了，随即开户砸钱进去，但直到真正开始操盘的时候，这种我已经学会了的错觉，让我赔了不少。有时候就跟你看了一百篇某个技术点的技术文章，真的开始写的时候，什么也想不起来，又得打开一篇，照猫画虎做完，却发现崩溃了。WTF。其实你并没有学会。</p>
-<p><strong>我主张你去看原始的资料<br>主张你去读系统的书籍<br>主张你去研究官方或是优秀项目的源码。</strong></p>
-<p>这些都是一手资料和优质 Demo。这才是真正的方法论，<br><strong>Google 是不会给你带来安全感的</strong>。</p>
-<p>而且很多复杂的东西，其实很难用一篇博客文章写清楚。越是清楚其中逻辑和原理的人，反而越是很少写技术文章，一来因为这些技术人感觉还有很多东西要研究，复杂问题写起来总是长篇大论，依赖知识也非常多，写起来麻烦。二来，研究到这些复杂东西的人，往往已经掌握了方法论，也不需要读这些文章，非要写一篇文章的话，只用只言片语提及思路，便够了。</p>
-<p>如果你在入门阶段，你读什么都可以，如果你想要有些突破，就按上面三条方法来吧，一定让你有所收获，如果你想有更大的突破，那就先给自己定个从未达到过的目标。</p>
-<p>最后，花些时间娱乐，不要总是那么紧张，生活也是很大的一门学问。</p>
-<p>正如 文明VI 中提到的一句名言：</p>
-<blockquote>
-<p>那些没时间娱乐的人，他们的时间会花在生病上。——约翰 沃纳梅克</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1964,7 +2005,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
