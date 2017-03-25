@@ -89,14 +89,14 @@
 
 <meta name="description" content="git reset-reset current HEAD to the specified stateHEAD 是什么？12345678* 573de5b (HEAD -&amp;gt; test, heroku/master, ch08) move sqlite3 to dev group &amp;amp; add pg to production group* 5403c96 (origin/ch08) r">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git操作-1 reset%rebase">
+<meta property="og:title" content="git操作-1 reset%rebase&others">
 <meta property="og:url" content="https://kevin161111.github.io/2017/03/25/2017-3-25gitrebase&gitreset/index.html">
 <meta property="og:site_name" content="KevinHan">
 <meta property="og:description" content="git reset-reset current HEAD to the specified stateHEAD 是什么？12345678* 573de5b (HEAD -&amp;gt; test, heroku/master, ch08) move sqlite3 to dev group &amp;amp; add pg to production group* 5403c96 (origin/ch08) r">
 <meta property="og:image" content="https://ww3.sinaimg.cn/large/006tKfTcgy1fdyfqy8lj9j30vk06q40z.jpg">
-<meta property="og:updated_time" content="2017-03-24T18:19:07.000Z">
+<meta property="og:updated_time" content="2017-03-25T06:42:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git操作-1 reset%rebase">
+<meta name="twitter:title" content="git操作-1 reset%rebase&others">
 <meta name="twitter:description" content="git reset-reset current HEAD to the specified stateHEAD 是什么？12345678* 573de5b (HEAD -&amp;gt; test, heroku/master, ch08) move sqlite3 to dev group &amp;amp; add pg to production group* 5403c96 (origin/ch08) r">
 <meta name="twitter:image" content="https://ww3.sinaimg.cn/large/006tKfTcgy1fdyfqy8lj9j30vk06q40z.jpg">
 
@@ -132,7 +132,7 @@
 
 
 
-  <title> git操作-1 reset%rebase | KevinHan </title>
+  <title> git操作-1 reset%rebase&others | KevinHan </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -292,7 +292,7 @@
             
             
               
-                git操作-1 reset%rebase
+                git操作-1 reset%rebase&others
               
             
           </h1>
@@ -411,6 +411,9 @@
 <p>这个过程只是合并commit ,并没有修改代码</p>
 <h3 id="git-rebase-onto-HEAD-3-HEAD-1"><a href="#git-rebase-onto-HEAD-3-HEAD-1" class="headerlink" title="git rebase onto HEAD~3 HEAD~1"></a>git rebase onto HEAD~3 HEAD~1</h3><p>会直接删掉两个commit 和其中的代码，当然也可以用hash、branchname。</p>
 <h3 id="git-push-u-origin-master"><a href="#git-push-u-origin-master" class="headerlink" title="git push -u origin master"></a>git push -u origin master</h3><p>The <code>-u</code> tells Git to remember the parameters, so that next time we can simply run <code>git push</code> and Git will know what to do.</p>
+<h3 id="git-grep-i-devise"><a href="#git-grep-i-devise" class="headerlink" title="git grep -i devise"></a>git grep -i devise</h3><p>列出所有含devise的行内容，devise可以替换其他的要查找的东西</p>
+<h3 id="git-grep-i-E-‘through’"><a href="#git-grep-i-E-‘through’" class="headerlink" title="git grep -i -E ‘through’"></a>git grep -i -E ‘through’</h3><p>列出所有包含文件中含有through的行列出来</p>
+<h3 id="heroku-logs-grep-i-error"><a href="#heroku-logs-grep-i-error" class="headerlink" title="heroku logs | grep -i error"></a>heroku logs | grep -i error</h3><p>列出heorku logs中所有含error的内容。</p>
 
       
     </div>
@@ -482,7 +485,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/03/25/2017-3-25gitrebase&gitreset/"
-           data-title="git操作-1 reset%rebase" data-url="https://kevin161111.github.io/2017/03/25/2017-3-25gitrebase&gitreset/">
+           data-title="git操作-1 reset%rebase&others" data-url="https://kevin161111.github.io/2017/03/25/2017-3-25gitrebase&gitreset/">
       </div>
     
   </div>
@@ -599,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-reset-reset-current-HEAD-to-the-specified-state"><span class="nav-number">1.</span> <span class="nav-text">git reset-reset current HEAD to the specified state</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HEAD-是什么？"><span class="nav-number">1.1.</span> <span class="nav-text">HEAD 是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果commit错了，想撤回"><span class="nav-number">1.2.</span> <span class="nav-text">如果commit错了，想撤回</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果要改变呢？看下面"><span class="nav-number">1.3.</span> <span class="nav-text">如果要改变呢？看下面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改commit的注释："><span class="nav-number">1.4.</span> <span class="nav-text">修改commit的注释：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-rebase-Reapply-commits-on-top-of-another-base-tip"><span class="nav-number">2.</span> <span class="nav-text">git rebase-Reapply commits on top of another base tip</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-rebase-i-合并commit"><span class="nav-number">2.1.</span> <span class="nav-text">git rebase -i 合并commit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-rebase-onto-HEAD-3-HEAD-1"><span class="nav-number">2.2.</span> <span class="nav-text">git rebase onto HEAD~3 HEAD~1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-push-u-origin-master"><span class="nav-number">2.3.</span> <span class="nav-text">git push -u origin master</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-reset-reset-current-HEAD-to-the-specified-state"><span class="nav-number">1.</span> <span class="nav-text">git reset-reset current HEAD to the specified state</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HEAD-是什么？"><span class="nav-number">1.1.</span> <span class="nav-text">HEAD 是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果commit错了，想撤回"><span class="nav-number">1.2.</span> <span class="nav-text">如果commit错了，想撤回</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果要改变呢？看下面"><span class="nav-number">1.3.</span> <span class="nav-text">如果要改变呢？看下面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改commit的注释："><span class="nav-number">1.4.</span> <span class="nav-text">修改commit的注释：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-rebase-Reapply-commits-on-top-of-another-base-tip"><span class="nav-number">2.</span> <span class="nav-text">git rebase-Reapply commits on top of another base tip</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-rebase-i-合并commit"><span class="nav-number">2.1.</span> <span class="nav-text">git rebase -i 合并commit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-rebase-onto-HEAD-3-HEAD-1"><span class="nav-number">2.2.</span> <span class="nav-text">git rebase onto HEAD~3 HEAD~1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-push-u-origin-master"><span class="nav-number">2.3.</span> <span class="nav-text">git push -u origin master</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-grep-i-devise"><span class="nav-number">2.4.</span> <span class="nav-text">git grep -i devise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-grep-i-E-‘through’"><span class="nav-number">2.5.</span> <span class="nav-text">git grep -i -E ‘through’</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#heroku-logs-grep-i-error"><span class="nav-number">2.6.</span> <span class="nav-text">heroku logs | grep -i error</span></a></li></ol></li></ol></div>
             
 
           </div>
