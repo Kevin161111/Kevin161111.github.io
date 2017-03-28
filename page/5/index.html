@@ -270,6 +270,378 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/11/2017-02-11-1405811/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/11/2017-02-11-1405811/" itemprop="url">
+                  2/8 全栈日记-购物车作业和时间开销思考
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-11T13:08:00+08:00">
+                2017-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/orid/" itemprop="url" rel="index">
+                    <span itemprop="name">orid</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/11/2017-02-11-1405811/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/11/2017-02-11-1405811/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h2><blockquote>
+<p>关于今天的课程，你记得什么？<br>完成了什么？</p>
+</blockquote>
+<p>完成了购物车练习作业</p>
+<ul>
+<li>一键清空</li>
+<li>删除不想买的</li>
+<li>不能重复加入</li>
+<li>更改数量</li>
+<li>更改库存为0的商品</li>
+<li>数量不得超过库存</li>
+</ul>
+<h2 id="Reflective"><a href="#Reflective" class="headerlink" title="Reflective"></a>Reflective</h2><blockquote>
+<p>你要如何形容今天的情绪<br>今天的高峰是什么？<br>今天的低点是什么？</p>
+</blockquote>
+<p>该实现的功能实现了，注意力也集中的很好。和陈波决定了周末一起meetup，一起学交流的话效率和注意力也更集中。</p>
+<h2 id="interpretive"><a href="#interpretive" class="headerlink" title="interpretive"></a>interpretive</h2><blockquote>
+<p>我们今天学到了什么？<br>今天最重要的领悟是什么？</p>
+</blockquote>
+<p>课程中的选择数量的方式和平时京东购物数量还有点差距，没有那么便捷，京东inspect界面看了下，需要js实现，等做前端的时候再加入吧。</p>
+<p>更改了一个替代的方案，不用选择列表，直接点选箭头增加数量，而且没有限制。写法如下：</p>
+<p>原来的写法：</p>
+<p><code>&lt;%= f.select :quantity, [1,2,3,4,5] %&gt;</code></p>
+<p>替代写法：</p>
+<p>  <code>&lt;%= f.number_field :quantity, value: cart_item.quantity.to_i, class: &quot;form-control&quot;, min: 1 %&gt;</code></p>
+<p>今天的领悟是，对教程中可以更改的部分做个记录，以后慢慢改，不要让更改功能花了太多的时间。做个todolist下次实现就好了。这个注意力被拉走不是坏事，学习的过程嘛，不过要用todolist拉回来，不要花太多时间。</p>
+<p>Decisional</p>
+<blockquote>
+<p>我们会如何用一句话形容今天的工作？<br>有哪些工作需要明天继续努力？</p>
+</blockquote>
+<p>效率不错，继续加油</p>
+<p>想办法做个统计表格，其实也是时间记录，用来记录时间开销</p>
+<table>
+<thead>
+<tr>
+<th>时间开销列表</th>
+<th>开始时间</th>
+<th>结束时间</th>
+<th>花费时间</th>
+<th>重要度（加不加都可以）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>—</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/11/2017-02-11-1405708/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/11/2017-02-11-1405708/" itemprop="url">
+                  2/7 全栈日记-思考注意力管理、鸡血
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-11T12:37:00+08:00">
+                2017-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/11/2017-02-11-1405708/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/11/2017-02-11-1405708/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h2><blockquote>
+<p>关于今天的课程，你记得什么？<br>完成了什么？</p>
+</blockquote>
+<p>工作加班，回来已经很晚了，复盘课程的时候一个无意的删除动作出现了错误提示</p>
+<p>错误记录<a href="http://kevinhan161111-blog.logdown.com/posts/1392957-error-unknown-cause-shopping-cart-error" title="不知名错误记录" target="_blank" rel="external">不知名错误记录</a></p>
+<p>debug半个小时无果，坚信不是拼写错误，因为之前实现了功能，可能是不知名的bug。</p>
+<p>半小时无果，果断放弃。</p>
+<h2 id="Reflective"><a href="#Reflective" class="headerlink" title="Reflective"></a>Reflective</h2><blockquote>
+<p>你要如何形容今天的情绪<br>今天的高峰是什么？<br>今天的低点是什么？</p>
+</blockquote>
+<p>低点：其实对工作的时候加班时间有点抵触了，想着急回来写代码，回来以后反而没什么进展，出现了不知名的bug</p>
+<h2 id="interpretive"><a href="#interpretive" class="headerlink" title="interpretive"></a>interpretive</h2><blockquote>
+<p>我们今天学到了什么？<br>今天最重要的领悟是什么？</p>
+</blockquote>
+<p>今天没有课程进展</p>
+<p>领悟的话，其实对工作和学习有了思考，什么更重要？因为决定不辞职，那工作还是要干的，既然要干，免不了加班，这个不可避免的。利用工作之外时间学习这是因该提起预判到的，那么关键就是如何提高工作之外时间的效率了。关于这个问题思考了几次，但只是发现问题，没有具体计划，而且注意力时不时被拉出去，也是需要解决的。想到之前看到的一个关于成功的鸡汤：青年人告诉成功人士他想像成功人士一样成功，成功人士把他领到岸边让他体会被水浸身体对呼吸的渴望。你到底有多想成功？到底多想完成这个事？有没有想想要呼吸一样去想完成这件事？想明白这个吧。</p>
+<p>Decisional</p>
+<blockquote>
+<p>我们会如何用一句话形容今天的工作？<br>有哪些工作需要明天继续努力？</p>
+</blockquote>
+<p>想了对注意力的把控和想不想学会编程的事，学会给自己打鸡血，感觉自己没那么上瘾了就找个激励视频看看！</p>
+<ul>
+<li>不能改变的就live with it</li>
+<li>到底想不想完成这个事呢？</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/11/2017-02-11-1405505/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1692,356 +2064,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/01/23/2017-01-23-full-stack-1-22-journal-admin-the-background/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinHan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KevinHan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/23/2017-01-23-full-stack-1-22-journal-admin-the-background/" itemprop="url">
-                  1-22 全栈日记-admin后台完成
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-23T11:44:00+08:00">
-                2017-01-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/orid/" itemprop="url" rel="index">
-                    <span itemprop="name">orid</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/23/2017-01-23-full-stack-1-22-journal-admin-the-background/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/23/2017-01-23-full-stack-1-22-journal-admin-the-background/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h2><blockquote>
-<p>关于今天的课程，你记得什么？</p>
-<p>完成了什么？</p>
-</blockquote>
-<p>完成userstory后开始跟着教程提示做admin后台，做到admin后台判定做不出来了，去翻看教程实例才做出来了，后面的imageupload也是看教程实例做出来的。</p>
-<h2 id="Reflective"><a href="#Reflective" class="headerlink" title="Reflective"></a>Reflective</h2><blockquote>
-<p>你要如何形容今天的情绪</p>
-<p>今天的高峰是什么？</p>
-<p>今天的低点是什么？</p>
-</blockquote>
-<p>今天心情有点郁闷，注意力总是会被周围的事情拉出去，这样效率太低了。</p>
-<p>高峰是做完专案第一周的作业的时候，终于做完了。</p>
-<p>低点是晚上时间盘点，发现今天并没有学到什么东西，没有进步的感觉。</p>
-<h2 id="interpretive"><a href="#interpretive" class="headerlink" title="interpretive"></a>interpretive</h2><blockquote>
-<p>我们今天学到了什么？</p>
-<p>今天最重要的领悟是什么？</p>
-</blockquote>
-<p>最重要的领悟是关于学习方面的总结之前做的太差了。虽然教程做了，但是新的课程出来的时候还是要翻之前的才能完成。新专案一部分和之前的基本相同，代码可以抄，但是基本的流程还是有点晕，不能理出一个清晰的思路出俩。</p>
-<p>Decisional</p>
-<blockquote>
-<p>我们会如何用一句话形容今天的工作？</p>
-<p>有哪些工作需要明天继续努力？</p>
-</blockquote>
-<p>今天的工作效率不高，在家里容易受到周围人的影响。对时间的流逝有了清晰的感觉，睡觉前清理了下今天的时间花费，真正学习的时间还是在晚上没人打扰的时候。</p>
-<p>需要努力的地方：</p>
-<ul>
-<li>总结总结再总结，课程中的内容要及时总计</li>
-<li>错误记录要及时，出现错误记录了就去logdown写一个，睡觉前再翻看</li>
-<li>珍惜注意力，被拉走的时候想想什么更重要！</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/01/22/2017-01-22-1346005/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinHan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KevinHan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/22/2017-01-22-1346005/" itemprop="url">
-                  1/21周记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-22T22:56:00+08:00">
-                2017-01-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/orid/" itemprop="url" rel="index">
-                    <span itemprop="name">orid</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/22/2017-01-22-1346005/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/22/2017-01-22-1346005/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="本周学到的最棒的工具／概念"><a href="#本周学到的最棒的工具／概念" class="headerlink" title="本周学到的最棒的工具／概念"></a>本周学到的最棒的工具／概念</h2><p>本周最棒的工具是typora,因为logdown的编辑器一直觉得不顺畅，用atom和有道云笔记写的话也是比较麻烦的，要不停的去点去刷格式，一直想找个能直接按快捷键就能出效果的工具。在新生大学里面翻到typora的那一刻就被这个软件吸引了，由于快捷键设置和想实现的效果也比较相似，也不用刻意去记，写起来简直停不下来。</p>
-<p>官方网站：<a href="https://typora.io" title="官方" target="_blank" rel="external">typora</a><br>简易教程：[<a href="http://www.gcssloop.com/markdown/markdown-editor" title="教程" target="_blank" rel="external">http://www.gcssloop.com/markdown/markdown-editor</a>]</p>
-<p>最棒的概念是关于学习方面的，<strong>真正学到的东西是不会忘记的</strong>。当时你看到的那个以为自己懂了，根据教程也练了，做购物网站的时候能想起来的只是自己学到的东西。学习的黄金通道中讲到教就是最好的学，有同学找你debug的时候你能帮到他的也是自己真正学到的东西，他可能是教程没看好，没能做到只字不差的阅读，没有检查敲完的和教程上的有什么不一样。但是你们两个一起debug之后你就会记得很清楚了，从要去翻教程到直接给出答案。总结学习的套路就是：高频+总结+分享，三者的重要性是相同的，缺一不可。</p>
-<p>这种还学到的几个概念：</p>
-<ul>
-<li>关于价值观：做决定之前想想<strong>什么是最重要的</strong></li>
-<li>关于时间：珍惜注意力很重要，在想清楚什么重要之后，要给自己约定一个时间限制，也就是要<strong>精简时间</strong>，把多余的时间砍掉。比如之前可能要花2个小时写日志，现在压缩到1个小时，这样写出来的东西更有价值。</li>
-<li>关于肌肉记忆：足球运动员在射门前不会去思考如何射门，跟高级的连场上的走位都是按照平时训练时形成的战术走位动作。所以<strong>高频练习形成肌肉记忆才是关键</strong>。</li>
-<li>关于学和做：做出来的重要性高于学出来，能不能做出来比学的怎么样重要，所以<strong>先知道怎么做，多做几遍，做熟练了，以后在某个时间点自然就懂了</strong>。</li>
-</ul>
-<h2 id="本周遇到最大的坑"><a href="#本周遇到最大的坑" class="headerlink" title="本周遇到最大的坑"></a>本周遇到最大的坑</h2><p>本周遇到最大的坑其实是魔改大赛的修改过程，由于工作的关系1月10日到18日一直在广州忙公司年终和项目，导致进度落后，回家之后赶紧进入开始做魔改，此时进入了之前学习的习惯，做出来之前总想弄明白这个东西是什么的一个怪圈，在各种资料中跑来跑去最终把自己脑袋搞晕了，虽然最终做出了基础的版本，但是这个版本并没有什么亮点。直到最后发现bootsnipp这个网站之后突然发现原来前端美化可以这么简单。不过我在资料中翻来翻去还是学到了不少概念，如果换一种思路，按照全栈营的方法，先去bootsnipp上面直接把作品先做出来，再去学的话效果肯定会更好，而且还会节省更多的注意力！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2086,7 +2113,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">70</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

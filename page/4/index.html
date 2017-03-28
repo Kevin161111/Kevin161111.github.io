@@ -270,6 +270,360 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/17/2017-02-17-course-withdrawal-order-status-management/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/17/2017-02-17-course-withdrawal-order-status-management/" itemprop="url">
+                  课程提取-订单状态管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-17T15:59:00+08:00">
+                2017-02-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/17/2017-02-17-course-withdrawal-order-status-management/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/17/2017-02-17-course-withdrawal-order-status-management/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="课程提取-切换订单状态"><a href="#课程提取-切换订单状态" class="headerlink" title="课程提取-切换订单状态"></a>课程提取-切换订单状态</h2><p><em>这课逻辑比较难，记忆就好了</em></p>
+<p>实现内容：后台订单的不同类型的管理</p>
+<ul>
+<li>已下单（order_placed）</li>
+<li>已付款(paid)</li>
+<li>出货中(shipping)</li>
+<li>到货(shipped)</li>
+<li>取消订单(order_cancelled)</li>
+<li>退货(good_returned)</li>
+</ul>
+<p>按照理解，可以给order表单增加不同的栏位来进行管理，不过这牵扯到已下单到已付款一直到退货的逻辑流程和相关之间的关系，如下图：</p>
+<p><img src="http://user-image.logdown.io/user/23053/blog/21999/post/1426120/2H1GK9gTBe2mK9NnCi9g_OlKrqkd8QfqeMk8ek5zf_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202017-02-03%20%E4%B8%8B%E5%8D%883.15.13.png" alt="OlKrqkd8QfqeMk8ek5zf_螢幕快照 2017-02-03 下午3.15.13.png"></p>
+<p>只有已下订单才可以进到已付款，而且只有在已下单和已付款状态才可以取消订单。只有到货的订单才可以退货。如果用model来实现的话会有大段的代码逻辑。所以用了一个aasm的gem来实现。</p>
+<h3 id="Step1："><a href="#Step1：" class="headerlink" title="Step1："></a>Step1：</h3><p>安装 <code>gem &quot;aasm&quot;</code> ，执行<code>bundle install</code>并重启rails s</p>
+<h3 id="step2：增加aasm-state栏位"><a href="#step2：增加aasm-state栏位" class="headerlink" title="step2：增加aasm_state栏位"></a>step2：增加aasm_state栏位</h3><p><code>rails g migratiom add_aasm_state_to_order</code></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">add_column <span class="symbol">:orders</span>, <span class="symbol">:aasm_state</span>, <span class="symbol">:string</span>, <span class="symbol">default:</span> <span class="string">"order_placed"</span></div><div class="line">add_index <span class="symbol">:orders</span>, <span class="symbol">:aasm_state</span></div></pre></td></tr></table></figure>
+<p><code>rake db:</code>migrate</p>
+<p>增加栏位的动作可以理解，通过aasm的state来设置不同的订单状态，初始状态为<code>order_placed</code></p>
+<p>add_index 的动作应该是新增index的页面来显示不同的aasm_state状态下的order</p>
+<h3 id="step3-设置订单状态"><a href="#step3-设置订单状态" class="headerlink" title="step3:设置订单状态"></a>step3:设置订单状态</h3><p>牵扯到表单栏位的内容区order.rb中修改</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">include</span> AASM</div><div class="line"></div><div class="line">aasm <span class="keyword">do</span></div><div class="line">state <span class="symbol">:order_placed</span>, <span class="symbol">initial:</span> <span class="literal">true</span></div><div class="line">state <span class="symbol">:paid</span></div><div class="line">state <span class="symbol">:shipping</span></div><div class="line">state <span class="symbol">:shipped</span></div><div class="line">state <span class="symbol">:order_cancelled</span></div><div class="line">state <span class="symbol">:good_returned</span></div><div class="line"></div><div class="line">event <span class="symbol">:make_payment</span> <span class="keyword">do</span></div><div class="line">  transitions <span class="symbol">from:</span> <span class="symbol">:order_placed</span>, <span class="symbol">to:</span> <span class="symbol">:paid</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">event <span class="symbol">:ship</span> <span class="keyword">do</span></div><div class="line">  transitions <span class="symbol">from:</span> <span class="symbol">:paid</span>, <span class="symbol">to:</span> <span class="symbol">:shipping</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">event <span class="symbol">:deliver</span> <span class="keyword">do</span></div><div class="line">  transitions <span class="symbol">from:</span> <span class="symbol">:shipping</span>, <span class="symbol">to:</span> <span class="symbol">:shipped</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">event <span class="symbol">:return_good</span> <span class="keyword">do</span></div><div class="line">  transitions <span class="symbol">from:</span> <span class="symbol">:shipped</span>, <span class="symbol">to:</span> <span class="symbol">:good_returned</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">event <span class="symbol">:cancell_order</span> <span class="keyword">do</span></div><div class="line">  transitions from : [<span class="symbol">:order_placed</span>, <span class="symbol">:paid</span>], <span class="symbol">to:</span> <span class="symbol">:order_cancelled</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>语法只能记忆了，逻辑还是通的：通过命名不同的state，让state遍历不同的event，在event中定义了不同state之间的切换。</p>
+<h4 id="step4：用aasm机制设定订单付款"><a href="#step4：用aasm机制设定订单付款" class="headerlink" title="step4：用aasm机制设定订单付款"></a>step4：用aasm机制设定订单付款</h4><p>Orders_controller.rb</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">...(略)</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">pay_with_alipay</span></span></div><div class="line">    @order = Order.find_by_token(params[<span class="symbol">:id</span>])</div><div class="line">    @order.set_payment_with!(<span class="string">"alipay"</span>)</div><div class="line">-   @order.pay!</div><div class="line">+   @order.make_payment!</div><div class="line"></div><div class="line">    redirect_to order_path(@order.token), <span class="symbol">notice:</span> <span class="string">"使用支付宝成功完成付款"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">pay_with_wechat</span></span></div><div class="line">    @order = Order.find_by_token(params[<span class="symbol">:id</span>])</div><div class="line">    @order.set_payment_with!(<span class="string">"wechat"</span>)</div><div class="line">-   @order.pay!</div><div class="line">+   @order.make_payment!</div><div class="line"></div><div class="line">    redirect_to order_path(@order.token), <span class="symbol">notice:</span> <span class="string">"使用微信支付成功完成付款"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">...(略)</div></pre></td></tr></table></figure>
+<p>Order.rb</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-    event <span class="symbol">:make_payment</span> <span class="keyword">do</span></div><div class="line">+    event <span class="symbol">:make_payment</span>, <span class="symbol">after_commit:</span> <span class="symbol">:pay!</span> <span class="keyword">do</span></div><div class="line">       transitions <span class="symbol">from:</span> <span class="symbol">:order_placed</span>, <span class="symbol">to:</span> <span class="symbol">:paid</span></div><div class="line">     <span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>git add commit</p>
+<h4 id="通过console测试"><a href="#通过console测试" class="headerlink" title="通过console测试"></a>通过console测试</h4><p>Order.last会显示</p>
+<p><img src="http://user-image.logdown.io/user/23053/blog/21999/post/1426120/Okz8R3qLQvWHGEzyTrKp_WX20170217-155524@2x.png" alt="WX20170217-155524@2x.png"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/17/2017-02-17-2-16-full-stack-logs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/17/2017-02-17-2-16-full-stack-logs/" itemprop="url">
+                  2/16全栈日志
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-17T01:25:00+08:00">
+                2017-02-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/orid/" itemprop="url" rel="index">
+                    <span itemprop="name">orid</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/17/2017-02-17-2-16-full-stack-logs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/17/2017-02-17-2-16-full-stack-logs/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="2-16-全栈日记-订单确认通知信件"><a href="#2-16-全栈日记-订单确认通知信件" class="headerlink" title="2/16-全栈日记-订单确认通知信件"></a>2/16-全栈日记-订单确认通知信件</h2><h2 id="objection"><a href="#objection" class="headerlink" title="objection"></a>objection</h2><blockquote>
+<p>关于今天的课程，你记得什么？<br>完成了什么？</p>
+</blockquote>
+<p>关于今天的课程，实现了用户下订单后转到支付界面的同时会收到一封网站订单通知的信件</p>
+<p> 具体实现是通过<code>rails g mailer OrderMailer</code>这个类似于model的mailer和letter_open这个gem来实现预览功能</p>
+<p>完成了这个课程并写了一篇课程<a href="http://kevinhan161111-blog.logdown.com/posts/1424335" target="_blank" rel="external">订单通知信件课程提取</a></p>
+<h2 id="Reflective"><a href="#Reflective" class="headerlink" title="Reflective"></a>Reflective</h2><blockquote>
+<p>你要如何形容今天的情绪<br>今天的高峰是什么？<br>今天的低点是什么？</p>
+</blockquote>
+<p>高点是觉得这个站内信的功能不错，一个maier和letter_open就实现了</p>
+<p>低点是这个课程有点不太懂，只能通过死记硬背来记住了</p>
+<h2 id="Interpretive"><a href="#Interpretive" class="headerlink" title="Interpretive"></a>Interpretive</h2><blockquote>
+<p>我们今天学到了什么？<br>今天最重要的领悟是什么？</p>
+</blockquote>
+<p>有些课程是不能像之前的课程那样写个课程提取去理解的，要靠多写几遍形成肌肉记忆。其实前面的课程为什么可以通过写课程提取记忆呢？因为之前已经练习了很多遍，大脑已经可以从记忆中提取来进行理解，大脑已经明白了输入什么得到什么的套路。已经从之前的未知通过肌肉记忆形成了已知来解释了。</p>
+<p>这也解释了为什么混乱才是学习的常态，未知的东西通过肌肉记忆变成已知，再通过大脑记忆去匹配。然后有了新的未知就继续变成肌肉记忆好了！</p>
+<h2 id="Desicisional"><a href="#Desicisional" class="headerlink" title="Desicisional"></a>Desicisional</h2><blockquote>
+<p>我们会如何用一句话形容今天的工作？<br>有哪些工作需要明天继续努力？</p>
+</blockquote>
+<p>今天的工作很好，课程虽然没有记住，不过思考了下学习的过程，明白了这是学习的常态。</p>
+<p>思考了之前做购物车的加减商品的按键问题，按照抄来的JS代码，不能实现自动刷新保存的功能，又复习了一下vote的课程，准备给product设个quantity的表单，通过quantity_id来实现，不过这个时候我缺忘记了购物车里面的逻辑代码，做第2遍的时候要写一遍课程提取加深印象</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/16/2017-02-16-2-15-full-stack-logs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1690,383 +2044,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/11/2017-02-11-1405811/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinHan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KevinHan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/11/2017-02-11-1405811/" itemprop="url">
-                  2/8 全栈日记-购物车作业和时间开销思考
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-11T13:08:00+08:00">
-                2017-02-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/orid/" itemprop="url" rel="index">
-                    <span itemprop="name">orid</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/11/2017-02-11-1405811/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/11/2017-02-11-1405811/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h2><blockquote>
-<p>关于今天的课程，你记得什么？<br>完成了什么？</p>
-</blockquote>
-<p>完成了购物车练习作业</p>
-<ul>
-<li>一键清空</li>
-<li>删除不想买的</li>
-<li>不能重复加入</li>
-<li>更改数量</li>
-<li>更改库存为0的商品</li>
-<li>数量不得超过库存</li>
-</ul>
-<h2 id="Reflective"><a href="#Reflective" class="headerlink" title="Reflective"></a>Reflective</h2><blockquote>
-<p>你要如何形容今天的情绪<br>今天的高峰是什么？<br>今天的低点是什么？</p>
-</blockquote>
-<p>该实现的功能实现了，注意力也集中的很好。和陈波决定了周末一起meetup，一起学交流的话效率和注意力也更集中。</p>
-<h2 id="interpretive"><a href="#interpretive" class="headerlink" title="interpretive"></a>interpretive</h2><blockquote>
-<p>我们今天学到了什么？<br>今天最重要的领悟是什么？</p>
-</blockquote>
-<p>课程中的选择数量的方式和平时京东购物数量还有点差距，没有那么便捷，京东inspect界面看了下，需要js实现，等做前端的时候再加入吧。</p>
-<p>更改了一个替代的方案，不用选择列表，直接点选箭头增加数量，而且没有限制。写法如下：</p>
-<p>原来的写法：</p>
-<p><code>&lt;%= f.select :quantity, [1,2,3,4,5] %&gt;</code></p>
-<p>替代写法：</p>
-<p>  <code>&lt;%= f.number_field :quantity, value: cart_item.quantity.to_i, class: &quot;form-control&quot;, min: 1 %&gt;</code></p>
-<p>今天的领悟是，对教程中可以更改的部分做个记录，以后慢慢改，不要让更改功能花了太多的时间。做个todolist下次实现就好了。这个注意力被拉走不是坏事，学习的过程嘛，不过要用todolist拉回来，不要花太多时间。</p>
-<p>Decisional</p>
-<blockquote>
-<p>我们会如何用一句话形容今天的工作？<br>有哪些工作需要明天继续努力？</p>
-</blockquote>
-<p>效率不错，继续加油</p>
-<p>想办法做个统计表格，其实也是时间记录，用来记录时间开销</p>
-<table>
-<thead>
-<tr>
-<th>时间开销列表</th>
-<th>开始时间</th>
-<th>结束时间</th>
-<th>花费时间</th>
-<th>重要度（加不加都可以）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>—</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/11/2017-02-11-1405708/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinHan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KevinHan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/11/2017-02-11-1405708/" itemprop="url">
-                  2/7 全栈日记-思考注意力管理、鸡血
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-11T12:37:00+08:00">
-                2017-02-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/11/2017-02-11-1405708/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/11/2017-02-11-1405708/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h2><blockquote>
-<p>关于今天的课程，你记得什么？<br>完成了什么？</p>
-</blockquote>
-<p>工作加班，回来已经很晚了，复盘课程的时候一个无意的删除动作出现了错误提示</p>
-<p>错误记录<a href="http://kevinhan161111-blog.logdown.com/posts/1392957-error-unknown-cause-shopping-cart-error" title="不知名错误记录" target="_blank" rel="external">不知名错误记录</a></p>
-<p>debug半个小时无果，坚信不是拼写错误，因为之前实现了功能，可能是不知名的bug。</p>
-<p>半小时无果，果断放弃。</p>
-<h2 id="Reflective"><a href="#Reflective" class="headerlink" title="Reflective"></a>Reflective</h2><blockquote>
-<p>你要如何形容今天的情绪<br>今天的高峰是什么？<br>今天的低点是什么？</p>
-</blockquote>
-<p>低点：其实对工作的时候加班时间有点抵触了，想着急回来写代码，回来以后反而没什么进展，出现了不知名的bug</p>
-<h2 id="interpretive"><a href="#interpretive" class="headerlink" title="interpretive"></a>interpretive</h2><blockquote>
-<p>我们今天学到了什么？<br>今天最重要的领悟是什么？</p>
-</blockquote>
-<p>今天没有课程进展</p>
-<p>领悟的话，其实对工作和学习有了思考，什么更重要？因为决定不辞职，那工作还是要干的，既然要干，免不了加班，这个不可避免的。利用工作之外时间学习这是因该提起预判到的，那么关键就是如何提高工作之外时间的效率了。关于这个问题思考了几次，但只是发现问题，没有具体计划，而且注意力时不时被拉出去，也是需要解决的。想到之前看到的一个关于成功的鸡汤：青年人告诉成功人士他想像成功人士一样成功，成功人士把他领到岸边让他体会被水浸身体对呼吸的渴望。你到底有多想成功？到底多想完成这个事？有没有想想要呼吸一样去想完成这件事？想明白这个吧。</p>
-<p>Decisional</p>
-<blockquote>
-<p>我们会如何用一句话形容今天的工作？<br>有哪些工作需要明天继续努力？</p>
-</blockquote>
-<p>想了对注意力的把控和想不想学会编程的事，学会给自己打鸡血，感觉自己没那么上瘾了就找个激励视频看看！</p>
-<ul>
-<li>不能改变的就live with it</li>
-<li>到底想不想完成这个事呢？</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2111,7 +2093,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">70</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

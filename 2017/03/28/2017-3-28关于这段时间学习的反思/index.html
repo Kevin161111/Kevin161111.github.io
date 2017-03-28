@@ -1,0 +1,821 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="关于这段时间学习的反思这段时间的问题：
+
+没有做具体的项目，没有了具体的反馈，没有了smallwin。导致效率明显下降，跑去看各种的rule book,陷入了what-&amp;gt;why死亡循环！
+元学习课没有具体实践，学了最厉害的方法不去实践，只是图个脑爽而已。
+面对一堆要学的东西（部署、API、testing、js），对这张混乱的状态没处理好，再加上不停的死循环-&amp;gt;no small win-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于这段时间学习的反思">
+<meta property="og:url" content="https://kevin161111.github.io/2017/03/28/2017-3-28关于这段时间学习的反思/index.html">
+<meta property="og:site_name" content="KevinHan">
+<meta property="og:description" content="关于这段时间学习的反思这段时间的问题：
+
+没有做具体的项目，没有了具体的反馈，没有了smallwin。导致效率明显下降，跑去看各种的rule book,陷入了what-&amp;gt;why死亡循环！
+元学习课没有具体实践，学了最厉害的方法不去实践，只是图个脑爽而已。
+面对一堆要学的东西（部署、API、testing、js），对这张混乱的状态没处理好，再加上不停的死循环-&amp;gt;no small win-">
+<meta property="og:updated_time" content="2017-03-28T05:23:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于这段时间学习的反思">
+<meta name="twitter:description" content="关于这段时间学习的反思这段时间的问题：
+
+没有做具体的项目，没有了具体的反馈，没有了smallwin。导致效率明显下降，跑去看各种的rule book,陷入了what-&amp;gt;why死亡循环！
+元学习课没有具体实践，学了最厉害的方法不去实践，只是图个脑爽而已。
+面对一堆要学的东西（部署、API、testing、js），对这张混乱的状态没处理好，再加上不停的死循环-&amp;gt;no small win-">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://kevin161111.github.io/2017/03/28/2017-3-28关于这段时间学习的反思/"/>
+
+
+
+
+
+  <title> 关于这段时间学习的反思 | KevinHan </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">KevinHan</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/28/2017-3-28关于这段时间学习的反思/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于这段时间学习的反思
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T13:17:58+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/其他/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/28/2017-3-28关于这段时间学习的反思/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/28/2017-3-28关于这段时间学习的反思/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="关于这段时间学习的反思"><a href="#关于这段时间学习的反思" class="headerlink" title="关于这段时间学习的反思"></a>关于这段时间学习的反思</h2><p>这段时间的问题：</p>
+<ol>
+<li>没有做具体的项目，没有了具体的反馈，没有了smallwin。导致效率明显下降，跑去看各种的rule book,陷入了<strong>what-&gt;why死亡循环</strong>！</li>
+<li>元学习课没有具体实践，<strong>学了最厉害的方法不去实践，只是图个脑爽而已</strong>。</li>
+<li>面对一堆要学的东西（部署、API、testing、js），对这张混乱的状态没处理好，再加上不停的<strong>死循环-&gt;no small win-&gt;拖延！</strong>这种大的死循环！</li>
+</ol>
+<p>还好无意中翻到<a href="https://www.gitbook.com/book/xdite/learn-something/details" target="_blank" rel="external">xdite-学习这回事</a>，真的特别感谢xdite，去年做的最明智的决定就是认识她，反思了上面的三条。</p>
+<p>再复习下（敲一遍）：</p>
+<p><strong><a href="https://xdite.gitbooks.io/learn-something/content/groundhog-day.html" target="_blank" rel="external">土拨鼠候群症</a></strong>：简单的说，一个人会不断的重复自己犯过的错，每次都会在类似的事上一直犯同样的错误，循环自杀！</p>
+<p>通常当事人都不会觉察到自己有这种倾向，只会觉得自己只是运气不好。但是旁观者却会觉得触目惊心：干，他又来了，妈的三个月之后我又要帮他收尸了。</p>
+<p>当你看到朋友老是因为类似的决策去死，自己却无法阻挡时，那种痛苦真的令人难以承受。</p>
+<p>回头想想，自己会不会有这种毛病？我这段时间就是典型，所以我为了记住，就把这种状态称为<strong>死亡循环</strong>。</p>
+<p>其实每个人都或多或少都有这种倾向，症状比较轻点，通常都是比较<em>了解自己</em>的人。了解自己越透彻的人，越不会有这张问题。</p>
+<p>不了解自己的人才会觉得自己一天衰到晚，然后自怨自艾，嫉妒他人，继续循环的徒劳无功。</p>
+<p>看到很多年轻时代觉得就这样萎靡下去了，只能感叹。</p>
+<p>人在几年间进步的差异，就真的卡在这里而已。</p>
+<p><strong><a href="https://xdite.gitbooks.io/learn-something/content/practice-every-day.html" target="_blank" rel="external">每天练习才是变强的关键</a></strong></p>
+<ul>
+<li>我没有刻意在练，而是每天无意识的玩这些新东西，无形之中其实就是一种强度非常大的练习。这样的日子我过了四五年。</li>
+<li>回顾所以我练不起来的东西，<strong>没有一项是经过强大的练习后，还搞不起来的例子</strong>。</li>
+<li>因为我<strong>付了钱，不练就是把钱丢水里</strong>。</li>
+<li>他们的知识取得的成本都相对很低廉，既然<strong>廉价，自然就没有得到那么高的重视</strong></li>
+</ul>
+<p><strong><a href="https://xdite.gitbooks.io/learn-something/content/learn-skill-fast.html" target="_blank" rel="external">如何飞速学一门技能</a></strong></p>
+<h3 id="Priciple"><a href="#Priciple" class="headerlink" title="Priciple"></a>Priciple</h3><ol>
+<li>Focus on language content that is relevant to you</li>
+<li>Use your new language as a Tool To Communicate From Day 1</li>
+<li>Understand the Message you will un consciously Acquire the Language</li>
+<li>Physiologica Training</li>
+<li>Physicological State Matters!</li>
+</ol>
+<h3 id="Action"><a href="#Action" class="headerlink" title="Action:"></a>Action:</h3><ol>
+<li>Listen A Lot</li>
+<li>Focus on getting the meaning first(  input -&gt; output)</li>
+<li>Start Mixing</li>
+<li>Focus on the Core</li>
+<li>Get a Language Parent</li>
+<li>Copy the face</li>
+<li>Direct Connect to Mental Images</li>
+</ol>
+<p>状态：ORID就是在记录这个状态，发现自己的状态和学习效果！</p>
+<p>心理生理的状态，如果你伤心、生气、担心、沮丧、你将不能学会！如果你是在一个开心、放松、好奇的大脑状态下，你将很快学会！你需要tolorate ambiguity! tolorate perfact!</p>
+<h3 id="xdite平时自己用的方法"><a href="#xdite平时自己用的方法" class="headerlink" title="xdite平时自己用的方法"></a>xdite平时自己用的方法</h3><ol>
+<li>找到目标教程里面和现在要解决的眼前状况有关系的部分</li>
+<li>尽情的读相关的教材—泡脑子</li>
+<li>中间有看不懂的也没关系，不需要停下了弄懂它。只享受弄懂的部分</li>
+<li>过滤出Pattern，掌握核心几个技巧</li>
+<li>利用这些核心技巧开始混合练习</li>
+<li>招数使出去，发现歪掉了就回去看别人怎么做的，纠正自己</li>
+<li>用映射技巧把新技能跟自己已经了解的知识做Mapping变成自己原有的一部分</li>
+</ol>
+<p>就是看完太极剑演示再忘记太极剑招式只记得剑义的意思。</p>
+<p><strong><a href="https://xdite.gitbooks.io/learn-something/content/fastest-path.html" target="_blank" rel="external">学习一个新领域的知识的最佳方法和时间各是什么？</a></strong></p>
+<p>99%的人学不会一项技能的原因：挫折感太大。这不是我的原因，我不会管这些挫折感，因为知道这些挫折感是正常的，学新东西出错再正常不过了。我的原因1是触发了 Why -&gt; What -&gt; Why -&gt; What 死亡循环。</p>
+<p>正常的循环应该是： <strong>What （重复 3 遍）</strong> -&gt; Why -&gt; How （独立重制步骤）。</p>
+<p><strong>重复3遍的定义是：</strong></p>
+<ol>
+<li>抄，搞懂input-&gt;output</li>
+<li>记，自己打，记录错误</li>
+<li>背，自己默写，写不出来就重复2</li>
+</ol>
+<p>原因2是没有<strong>重复3遍</strong>！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/26/2017-3-26关于routes中的as/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/28/2017-3-28关于这段时间学习的反思/"
+           data-title="关于这段时间学习的反思" data-url="https://kevin161111.github.io/2017/03/28/2017-3-28关于这段时间学习的反思/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg"
+               alt="KevinHan" />
+          <p class="site-author-name" itemprop="name">KevinHan</p>
+           
+              <p class="site-description motion-element" itemprop="description">keep growing</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">72</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Kevin161111" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100013211401924" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于这段时间学习的反思"><span class="nav-number">1.</span> <span class="nav-text">关于这段时间学习的反思</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Priciple"><span class="nav-number">1.1.</span> <span class="nav-text">Priciple</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Action"><span class="nav-number">1.2.</span> <span class="nav-text">Action:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xdite平时自己用的方法"><span class="nav-number">1.3.</span> <span class="nav-text">xdite平时自己用的方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">KevinHan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kevin1111"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
