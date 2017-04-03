@@ -270,6 +270,167 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/01/07/2017-01-07-error-107/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/07/2017-01-07-error-107/" itemprop="url">
+                  错误记录 106-1-修改rails g 中敲错的内容
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-07T00:59:00+08:00">
+                2017-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/错误记录/" itemprop="url" rel="index">
+                    <span itemprop="name">错误记录</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/07/2017-01-07-error-107/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/07/2017-01-07-error-107/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://user-image.logdown.io/user/23053/blog/21999/post/1280538/Exfj5p3GS32qQdhrQVsf_%E9%94%99%E8%AF%AF%E5%8F%91%E7%8E%B0.png" alt="错误发现.png"><br>在console 中运行<code>Job.create(title: &quot;job1&quot;, description: &quot;job1 body&quot;)</code> 出现<code>unknow attribute&#39;title&#39; for Job</code><br>仔细检查了前面的命令拼写，发现将<code>title</code>敲成了<code>titile</code></p>
+<p><img src="http://user-image.logdown.io/user/23053/blog/21999/post/1280538/b3QRwpWCRZmPUjxXSHdc_%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E5%A4%A7%E9%94%99%E7%9A%84%E5%90%8D%E5%AD%97.png" alt="如何处理大错的名字.png"></p>
+<p> google logdown 更改名称找到了<br> [如何更改目录名称]（<a href="http://raimonfuns-blog.logdown.com/posts/1257486-the-wrong-how-to-modify-the-column-name-rename-column）" target="_blank" rel="external">http://raimonfuns-blog.logdown.com/posts/1257486-the-wrong-how-to-modify-the-column-name-rename-column）</a><br> 翻了这位同学的笔记和stackover flow 链接<br> <strong>step1:</strong><br>执行<code>rails g migration FixColumnName</code>创建migration</p>
+<p><strong>step2:</strong><br>修改db/xxxxxx_fix_column_name.rb</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> class FixColumnName &lt; ActiveRecord::Migration[5.0]</div><div class="line">  def change</div><div class="line">    rename_column :posts, :titile, :title</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+<p><strong>step3:</strong><br>执行<code>rails db:migrate</code> 再次出错<br><img src="http://user-image.logdown.io/user/23053/blog/21999/post/1280538/ejHW0DmS5yHHvC0HtJQ1_%E9%94%99%E8%AF%AF2.png" alt="错误2.png"></p>
+<p>could not find table posts<br> 将<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def change</div><div class="line">   rename_column :posts, :titile, :title</div><div class="line"> end</div></pre></td></tr></table></figure></p>
+<p> 修改为<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">def change</div><div class="line">rename_column :jobs, :titile, :title</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>重新执行<code>rake db:migrate</code> done</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/01/06/2017-01-06-1280315/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1820,178 +1981,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2016/12/23/2016-12-23-1235752/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinHan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KevinHan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/23/2016-12-23-1235752/" itemprop="url">
-                  全栈第8天
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-23T01:21:00+08:00">
-                2016-12-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/orid/" itemprop="url" rel="index">
-                    <span itemprop="name">orid</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/12/23/2016-12-23-1235752/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/23/2016-12-23-1235752/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="第二遍重新开始"><a href="#第二遍重新开始" class="headerlink" title="第二遍重新开始"></a>第二遍重新开始</h2><h2 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h2><blockquote>
-<p>关于今天的课程, 你记得什么?<br>完成了什么?</p>
-</blockquote>
-<p>重新开始第2遍的学习，从新项目的建立到heroku open 可以做到不看教程做完<br>完成了一个自己的新项目，里面只要一个网页列表，push到github和heroku</p>
-<h2 id="Reflective"><a href="#Reflective" class="headerlink" title="Reflective"></a>Reflective</h2><blockquote>
-<p>你要如何形容今天的情绪<br>今天的高峰是什么?<br>今天的低点是什么?</p>
-</blockquote>
-<p>因为工作的事情有点焦虑，下班后没有马上投入学习，马上看了老师前面的2节课把自己状态拉回来，<br>高峰是不看教程独立做了一个程式，流程都记住了<br>低点是焦虑情绪耽误了不少时间</p>
-<h2 id="Interpretive"><a href="#Interpretive" class="headerlink" title="Interpretive"></a>Interpretive</h2><blockquote>
-<p>我们今天学到了什么?<br>今天一个重要的领悟是什么?</p>
-</blockquote>
-<p>今天是对之前课程的总结，敲代码要细心，出错了自己试着debug，然后google一般都解决了<br>最重要的领悟是焦虑情绪的处理，焦虑本身没什么，忘掉它赶紧投入学习自然就消失了</p>
-<h2 id="Decisional"><a href="#Decisional" class="headerlink" title="Decisional"></a>Decisional</h2><blockquote>
-<p>我们会如何用一句话形容今天的工作<br>有哪些工作需要明天继续努力?</p>
-</blockquote>
-<p>今天的对课程的总结不错，以后要快速进入学习状态</p>
-<ul>
-<li>明天继续往今天的程序里面增加初级课程的内容，利用星期天完成rails102</li>
-<li>元旦前完成rails105</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2041,7 +2030,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">73</span>
+                <span class="site-state-item-count">74</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

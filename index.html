@@ -748,6 +748,201 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/25/2017-3-25API 实做/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/25/2017-3-25API 实做/" itemprop="url">
+                  API实做-1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T15:31:41+08:00">
+                2017-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/25/2017-3-25API 实做/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/25/2017-3-25API 实做/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="API-实做-1"><a href="#API-实做-1" class="headerlink" title="API 实做-1"></a>API 实做-1</h2><h3 id="1-2抓天气资讯"><a href="#1-2抓天气资讯" class="headerlink" title="1-2抓天气资讯"></a>1-2抓天气资讯</h3><p><code>gem install rest-client</code></p>
+<p>rest-client可以用Ruby发送HTTP请求</p>
+<p>irb</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'rest-client'</span></div><div class="line">response = RestClient.get <span class="string">"http://www.weather.com.cn/weather1d/101010100.shtml"</span></div><div class="line">response.body</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'nokogiri'</span></div><div class="line">doc = Nokogiri::HTML.parse(response.body)</div><div class="line">doc.css(<span class="string">".today .tem"</span>).map&#123; <span class="params">|x|</span> x.text &#125;  <span class="comment"># 得到 ["\n13°C\n", "\n2°C\n", "\n"]</span></div></pre></td></tr></table></figure>
+<p>通过nokogirl这个库来解析HTML，通过CSS selector 从文章中对比出想要的东西。以上就是web crawler（网络爬虫），不过这种方式太辛苦，如果对方更改了HTML的内容，你需要重新提取</p>
+<p>所以用API来存取</p>
+<h3 id="json文件"><a href="#json文件" class="headerlink" title="json文件"></a>json文件</h3><p>一个普通json字符串<code>{ &quot;id&quot;: 123, &quot;name&quot;: &quot;foobar&quot;}</code></p>
+<p>任意Ruby资料转json</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Ruby资料转json</span></div><div class="line"><span class="meta">2.3.1 :001 &gt;</span> require <span class="string">'json'</span></div><div class="line"> =&gt; true</div><div class="line"><span class="meta">2.3.1 :002 &gt;</span> &#123; <span class="symbol">:id</span> =&gt; <span class="number">123</span>, <span class="symbol">:name</span> =&gt; <span class="string">"foobar"</span>&#125;.to_json</div><div class="line"> =&gt; <span class="string">"&#123;\"id\":123,\"name\":\"foobar\"&#125;"</span></div><div class="line"><span class="comment">#json转回Ruby</span></div><div class="line"><span class="meta">2.3.1 :003 &gt;</span> JSON.parse( <span class="string">"&#123;\"id\":123,\"name\":\"foobar\"&#125;"</span> )</div><div class="line"> =&gt; &#123;<span class="string">"id"</span>=&gt;<span class="number">123</span>, <span class="string">"name"</span>=&gt;<span class="string">"foobar"</span>&#125;</div></pre></td></tr></table></figure>
+<h3 id="去聚合数据注册找到你要抓的内容和key"><a href="#去聚合数据注册找到你要抓的内容和key" class="headerlink" title="去聚合数据注册找到你要抓的内容和key"></a>去<a href="https://www.juhe.cn/" target="_blank" rel="external">聚合数据</a>注册找到你要抓的内容和key</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="string">'rest-client'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'json'</span></div><div class="line">response = RestClient.get <span class="string">"http://v.juhe.cn/weather/citys"</span>, <span class="symbol">:params</span> =&gt; &#123; <span class="symbol">:key</span> =&gt; <span class="string">"請換成你的Key"</span> &#125;    </div><div class="line">data = JSON.parse(response.body)</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">data.keys          <span class="comment"># =&gt; ["resultcode", "reason", "result", "error_code"]</span></div><div class="line">data[<span class="string">"result"</span>][<span class="number">0</span>]  <span class="comment"># =&gt; &#123;"id"=&gt;"1", "province"=&gt;"北京", "city"=&gt;"北京", "district"=&gt;"北京"&#125;</span></div></pre></td></tr></table></figure>
+<h3 id="通过postman可以对API的数据进行测试"><a href="#通过postman可以对API的数据进行测试" class="headerlink" title="通过postman可以对API的数据进行测试"></a>通过postman可以对API的数据进行测试</h3><h3 id="实做"><a href="#实做" class="headerlink" title="实做"></a>实做</h3><ol>
+<li><p>rails new api_exercise</p>
+</li>
+<li><p>gem ‘rest-client’</p>
+</li>
+<li><p>rails g model city</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">CreateCities</span> &lt; ActiveRecord::Migration[5.0]</span></div><div class="line">   <span class="function"><span class="keyword">def</span> <span class="title">change</span></span></div><div class="line">     create_table <span class="symbol">:cities</span> <span class="keyword">do</span> <span class="params">|t|</span></div><div class="line">+      t.string <span class="symbol">:juhe_id</span>    </div><div class="line">       <span class="comment">#对应上面抓的内容</span></div><div class="line">+      t.string <span class="symbol">:province</span></div><div class="line">+      t.string <span class="symbol">:city</span></div><div class="line">+      t.string <span class="symbol">:district</span></div><div class="line">+      t.string <span class="symbol">:current_temp</span></div><div class="line">       t.timestamps</div><div class="line">     <span class="keyword">end</span></div><div class="line"></div><div class="line">+    add_index <span class="symbol">:cities</span>, <span class="symbol">:juhe_id</span></div><div class="line">   <span class="keyword">end</span></div><div class="line"> <span class="keyword">end</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>touch lib/tasks/dev.rake</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">namespace <span class="symbol">:dev</span> <span class="keyword">do</span></div><div class="line">  task <span class="symbol">:fetch_city</span> =&gt; <span class="symbol">:environment</span> <span class="keyword">do</span></div><div class="line">    puts <span class="string">"Fetch city data..."</span></div><div class="line">    response = RestClient.get <span class="string">"http://v.juhe.cn/weather/citys"</span>, <span class="symbol">:params</span> =&gt; &#123; <span class="symbol">:key</span> =&gt; <span class="string">"你申请的key放这里"</span> &#125;</div><div class="line">    data = JSON.parse(response.body)</div><div class="line"></div><div class="line">    data[<span class="string">"result"</span>].each <span class="keyword">do</span> <span class="params">|c|</span></div><div class="line">      existing_city = City.find_by_juhe_id( c[<span class="string">"id"</span>] )</div><div class="line">      <span class="keyword">if</span> existing_city.<span class="literal">nil</span>?</div><div class="line">        City.create!( <span class="symbol">:juhe_id</span> =&gt; c[<span class="string">"id"</span>], <span class="symbol">:province</span> =&gt; c[<span class="string">"province"</span>],</div><div class="line">                      <span class="symbol">:city</span> =&gt; c[<span class="string">"city"</span>], <span class="symbol">:district</span> =&gt; c[<span class="string">"district"</span>] )</div><div class="line">      <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line">    puts <span class="string">"Total: <span class="subst">#&#123;City.count&#125;</span> cities"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>bundle exec rake dev:fetch_city</code>将数据存进数据库</p>
+</li>
+<li><p>routes  resources :cites</p>
+</li>
+<li><p>rails g controller cities</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span></span></div><div class="line">	@cities = City.all</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>touch app/views/cities/index.html.erb</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">th</span>&gt;</span>Juhe ID<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">th</span>&gt;</span>Province<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">th</span>&gt;</span>City<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">th</span>&gt;</span>District<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">th</span>&gt;</span>Temp<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> @<span class="attr">cities.each</span> <span class="attr">do</span> |<span class="attr">city</span>| %&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">city.juhe_id</span> %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">city.province</span> %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">city.city</span> %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">city.district</span> %&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>更新城市天气 routes</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">-  resources <span class="symbol">:cities</span></div><div class="line">+  resources <span class="symbol">:cities</span> <span class="keyword">do</span></div><div class="line">+    member <span class="keyword">do</span></div><div class="line">+      post <span class="symbol">:update_temp</span></div><div class="line">+    <span class="keyword">end</span></div><div class="line">+  <span class="keyword">end</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>Views</p>
+</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- &lt;td&gt;&lt;/td&gt;</div><div class="line">+ &lt;td&gt;</div><div class="line">+   &lt;%= city.current_temp %&gt;</div><div class="line">+   &lt;%= link_to "更新温度", update_temp_city_path(city), :method =&gt; :post %&gt;</div><div class="line">+ &lt;/td&gt;</div></pre></td></tr></table></figure>
+<ol>
+<li>controller</li>
+</ol>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_temp</span></span></div><div class="line">    city = City.find(params[<span class="symbol">:id</span>])</div><div class="line"></div><div class="line">    response = RestClient.get <span class="string">"http://v.juhe.cn/weather/index"</span>, </div><div class="line">                              <span class="symbol">:params</span> =&gt; &#123; <span class="symbol">:cityname</span> =&gt; city.juhe_id, <span class="symbol">:key</span> =&gt; <span class="string">"你申请的key放这里"</span> &#125;</div><div class="line">    data = JSON.parse(response.body)</div><div class="line"></div><div class="line">    city.update( <span class="symbol">:current_temp</span> =&gt; data[<span class="string">"result"</span>][<span class="string">"sk"</span>][<span class="string">"temp"</span>] )</div><div class="line"></div><div class="line">    redirect_to cities_path</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/25/2017-3-25gitrebase&gitreset/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1791,167 +1986,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/16/前端错误记录-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinHan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KevinHan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/16/前端错误记录-1/" itemprop="url">
-                  前端错误记录-1
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-16T23:22:50+08:00">
-                2017-03-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/16/前端错误记录-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/16/前端错误记录-1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="important-是什么？"><a href="#important-是什么？" class="headerlink" title="!important 是什么？"></a>!important 是什么？</h3><p>改变css里面的权重问题，如果后面的注释改变了元素的css值，而这个元素前面的css中有！important的话，就不会被更改。见<a href="https://css-tricks.com/when-using-important-is-the-right-choice/" target="_blank" rel="external">when using important is the right choice!</a></p>
-<h3 id="文字元素的居中"><a href="#文字元素的居中" class="headerlink" title="文字元素的居中"></a>文字元素的居中</h3><p>需要同时定义line-height,值要和height值相同。</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">* &#123;</div><div class="line">	outline: 1px solid red !important; //所有元素的边框会被标出，不包含margin</div><div class="line">&#125;</div><div class="line">* &#123;</div><div class="line">	-webkit-box-sizing: border-box;</div><div class="line">	-moz-box-sizing: border-box;</div><div class="line">	-ms-box-sizing: border-box;</div><div class="line">	box-sizing: border-box;  //所有元素都被框在box中</div><div class="line">&#125;</div><div class="line">.app &#123;</div><div class="line">	display: flex; //子div元素尽量平行显示，而不是每个占一行</div><div class="line">&#125;</div><div class="line">.description&#123;</div><div class="line">	color:red;</div><div class="line">	max-width: 750px;</div><div class="line">&#125;</div><div class="line">.screenshot &#123;</div><div class="line">	max-width: 460px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="语法验证网站"><a href="#语法验证网站" class="headerlink" title="语法验证网站"></a>语法验证网站</h3><ul>
-<li><a href="https://validator.w3.org/#validate_by_input" target="_blank" rel="external">HTML check</a></li>
-<li><a href="http://jigsaw.w3.org/css-validator/#validate_by_input" target="_blank" rel="external">CSS check</a></li>
-</ul>
-<h3 id="orientation"><a href="#orientation" class="headerlink" title="orientation"></a>orientation</h3><p>orientation: landscape,一般用于小屏幕是判定是不是横放状态</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@media only screen and (max-width: 500px) and (orientation: landscape) &#123;</div><div class="line">   p&#123;</div><div class="line">     display: none;</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line">//横放P不显示</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2001,7 +2035,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">73</span>
+                <span class="site-state-item-count">74</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
