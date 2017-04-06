@@ -270,6 +270,167 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/04/06/2017-4-6-Ajax-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/06/2017-4-6-Ajax-1/" itemprop="url">
+                  Ajax 前端加速
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T16:22:09+08:00">
+                2017-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/06/2017-4-6-Ajax-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/06/2017-4-6-Ajax-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Ajax是什么？如何实现？"><a href="#Ajax是什么？如何实现？" class="headerlink" title="Ajax是什么？如何实现？"></a>Ajax是什么？如何实现？</h3><p>Ajax（Asynchronous JavaScript and XML）异步的JavaScript 与XML技术，不需要整页替换，只需要更新部分网页。大大加速UI反应速度。常见回传Json 和Script 格式</p>
+<p>用Json格式，必须写自定义的JavaScript去处理Ajax的发出和接受处理。JavaScript 强者或队伍中有前端工程师会这么写。</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNc79gy1fed18sg42tj30s80l9gue.jpg" alt=""></p>
+<p>另一种是用Script格式，服务器回传JavaScript，浏览器拿到后直接执行。这种方式Rails有内建<a href="https://github.com/rails/jquery-ujs" target="_blank" rel="external">Jquery-ujs</a> gem，会帮忙绑好事件去处理Ajax发送和接收。这是比较简单的做法，对jQuery技能的要求也比较低。</p>
+<h3 id="Ajax删除例子"><a href="#Ajax删除例子" class="headerlink" title="Ajax删除例子"></a>Ajax删除例子</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"text-right"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Delete</span>", <span class="attr">post_path</span>(<span class="attr">post</span>), <span class="attr">method:</span> <span class="attr">:delete</span>, <span class="attr">remote:</span> <span class="attr">true</span>, <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-danger</span>") %&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  </div><div class="line">  // Remote JS 把远端的JS抓过来执行</div><div class="line">  // remote: true 可以把link_to、button_to、form_for变成Ajax</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">def destroy</div><div class="line">  @post = current_user.posts.find(params[:id])</div><div class="line">  @post.destroy</div><div class="line">  render js: "alert('ok');" //测试用，实作删除此行</div><div class="line">  </div><div class="line">end</div></pre></td></tr></table></figure>
+<p>html文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>  <span class="attr">id</span>=<span class="string">"post-&lt;%= post.id %&gt;"</span>  <span class="attr">class</span>=<span class="string">"panel panel-default"</span> &gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-heading"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.user.display_name</span> %&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-body"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.content</span> %&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"text-right"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> <span class="attr">post.liked_users.any</span>? %&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">%=</span> <span class="attr">post.liked_users.map</span>&#123; |<span class="attr">u</span>| <span class="attr">u.display_name</span> &#125;<span class="attr">.join</span>(",") %&gt;</span> 点了赞</div><div class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> <span class="attr">current_user</span>  #登录才可以按赞 %&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> <span class="attr">post.find_like</span>(<span class="attr">current_user</span>) %&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">-1</span>", <span class="attr">unlike_post_path</span>(<span class="attr">post</span>), <span class="attr">method:</span> <span class="attr">:post</span>, <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-primary</span>") %&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">%</span> <span class="attr">else</span> %&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("+<span class="attr">1</span>", <span class="attr">like_post_path</span>(<span class="attr">post</span>), <span class="attr">method:</span> <span class="attr">:post</span>, <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-primary</span>") %&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> <span class="attr">current_user</span> &amp;&amp; <span class="attr">post.user</span> == <span class="string">current_user</span> %&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"text-right"</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">%=</span> <span class="attr">link_to</span>("<span class="attr">Delete</span>", <span class="attr">post_path</span>(<span class="attr">post</span>), <span class="attr">method:</span> <span class="attr">:delete</span>, <span class="attr">remote:</span> <span class="attr">true</span>, <span class="attr">class:</span> "<span class="attr">btn</span> <span class="attr">btn-danger</span>") %&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></div><div class="line">       </div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>destroy.js.erb</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$(<span class="string">"#post-&lt;%= @post.id %&gt;"</span>).remove();</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/04/03/2017-4-2为何总是记不住：认知相关和读书的正确流程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1829,163 +1990,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/03/18/元学习课一/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinHan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KevinHan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/18/元学习课一/" itemprop="url">
-                  元学习课一学习学习的套路
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-18T02:19:37+08:00">
-                2017-03-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/元学习课/" itemprop="url" rel="index">
-                    <span itemprop="name">元学习课</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/18/元学习课一/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/18/元学习课一/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>这篇是<a href="https://kevin161111.github.io/2017/03/09/%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%A5%97%E8%B7%AF/">学习的套路</a>的前篇，讲述了学习编程的入门方法论.从编程是什么讲到如果面对拖延症。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/18/元学习课一/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2035,7 +2039,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-count">75</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
