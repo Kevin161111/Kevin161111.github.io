@@ -270,6 +270,181 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/12/编程豆知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="KevinHan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="KevinHan">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/12/编程豆知识/" itemprop="url">
+                  编程豆知识
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-12T11:42:49+08:00">
+                2017-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/12/编程豆知识/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/12/编程豆知识/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-dependent-destroy"><a href="#1-dependent-destroy" class="headerlink" title="1.dependent::destroy"></a>1.dependent::destroy</h3><p><code>has_many :posts,dependent::destroy</code>  </p>
+<p>意思就是group删除的话，对应group里的post也删除</p>
+<h3 id="2-model-visual"><a href="#2-model-visual" class="headerlink" title="2.model visual"></a>2.model visual</h3><p><code>https://github.com/voormedia/rails-erd/blob/master/README.md</code><br>可以自动生成上面所示的模型关联图<br>方法如下：</p>
+<ol>
+<li><code>brew install graphviz</code></li>
+<li>Gemfile中加入 <code>gem &quot;rails-erd&quot;</code>,后重新bundle</li>
+</ol>
+<p>3.<code>rake erd</code><br>atom项目文件下就会生成资料库关系的图示文件 erb.pdf</p>
+<h3 id="3-How-to-user-icon-in-ERB"><a href="#3-How-to-user-icon-in-ERB" class="headerlink" title="3.How to user icon in ERB"></a>3.How to user icon in ERB</h3><p>Refer to <a href="https://github.com/bokmann/font-awesome-rails" target="_blank" rel="external">font-awesome-helper</a>,<a href="http://fontawesome.io/cheatsheet/" target="_blank" rel="external">fontawesome cheatsheet</a>,<a href="http://fontawesome.io/examples/" target="_blank" rel="external">fontawesome example</a></p>
+<p>e.g..  <code>&lt;li&gt;&lt;%= link_to(&quot;login&quot;, new_user_session_path) %&gt;&lt;/li&gt;</code></p>
+<p>To <code>&lt;li&gt;&lt;%= link_to(content_tag(:i, &#39;登入&#39;, class: &#39;fa fa-sign-in&#39;), new_user_session_path) %&gt;&lt;/li&gt;</code></p>
+<p>Like:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">content_tag(<span class="symbol">:li</span>, fa_icon(<span class="string">"check li"</span>, <span class="symbol">text:</span> <span class="string">"Bulleted list item"</span>))</div><div class="line"><span class="comment"># =&gt; &lt;li&gt;&lt;i class="fa fa-check fa-li"&gt;&lt;/i&gt; Bulleted list item&lt;/li&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fa_icon <span class="string">"quote-left 4x"</span>, <span class="class"><span class="keyword">class</span>: "<span class="title">text</span>-<span class="title">muted</span> <span class="title">pull</span>-<span class="title">left</span>"</span></div><div class="line"><span class="comment"># =&gt; &lt;i class="fa fa-quote-left fa-4x text-muted pull-left"&gt;&lt;/i&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&lt;li&gt; &lt;%= link_to("Products",  admin_products_path, :class =&gt; "btn btn-xx btn-info" ) %&gt; &lt;/li&gt;</div><div class="line">1st</div><div class="line">&lt;a href="admin_products_path class="btn btn-xx btn-info" &gt;Products&lt;/a&gt;</div><div class="line">2nd</div><div class="line">&lt;li&gt;&lt;%= link_to(content_tag(:i, 'products', class: 'fa fa-sign-in'), new_user_session_path) %&gt;&lt;/li&gt;</div><div class="line">3rd</div><div class="line"></div><div class="line">&lt;ul class="nav nav-pills nav-stacked" style="max-width: 300px; padding-top:20px;"&gt;</div><div class="line">      &lt;li class="active"&gt;&lt;%= link_to("Jobs", admin_jobs_path ) %&gt; &lt;/li&gt;</div><div class="line">   &lt;/ul&gt;</div><div class="line">4th</div><div class="line"></div><div class="line"></div><div class="line">&lt;td&gt;</div><div class="line">-    &lt;%= link_to("Edit", edit_admin_job_path(job), :class =&gt; "btn btn-xs btn-info") %&gt;</div><div class="line">+    &lt;%= link_to edit_admin_job_path(job), class: "btn btn-xs btn-info" do %&gt;&lt;i class="fa fa-pencil"&gt;&lt;/i&gt;&lt;% end %&gt;</div><div class="line">-    &lt;%= link_to("Destroy", admin_job_path(job), :method =&gt; :delete, :class =&gt; "btn btn-xs  btn-danger", :data =&gt; &#123; :confirm =&gt; "Are you sure?" &#125;) %&gt;</div><div class="line">+    &lt;%= link_to admin_job_path(job), :method =&gt; :delete, :class =&gt; "btn btn-xs  btn-danger", :data =&gt; &#123; :confirm =&gt; "Are you sure?" &#125; do %&gt;&lt;i class="fa fa-trash-o"&gt;&lt;/i&gt;&lt;% end %&gt;</div><div class="line">    &lt;% if job.is_hidden %&gt;</div><div class="line">-     &lt;%= link_to("Publish", publish_admin_job_path(job) , :method =&gt; :post, :class =&gt; "btn btn-xs btn-success") %&gt;</div><div class="line">+    &lt;%= link_to publish_admin_job_path(job) , :method =&gt; :post, :class =&gt; "btn btn-xs btn-success" do %&gt;&lt;i class="fa fa-eye"&gt;&lt;/i&gt;&lt;% end %&gt;</div><div class="line">    &lt;% else %&gt;</div><div class="line">-      &lt;%= link_to("Hide", hide_admin_job_path(job), :method =&gt; :post,  :class =&gt; "btn btn-xs btn-warning") %&gt;</div><div class="line">+    &lt;%= link_to hide_admin_job_path(job), :method =&gt; :post,  :class =&gt; "btn btn-xs btn-warning" do %&gt;&lt;i class="fa fa-eye-slash"&gt;&lt;/i&gt;&lt;% end %&gt;</div><div class="line">    &lt;% end %&gt;</div><div class="line">&lt;/td&gt;</div><div class="line"></div><div class="line">&lt;%= link_to("以支付宝支付",pay_with_alipay_order_path(@order.token), :method =&gt; :post,</div><div class="line">      :class =&gt; "btn btn-danger") %&gt;</div></pre></td></tr></table></figure>
+<h3 id="4-simple-form"><a href="#4-simple-form" class="headerlink" title="4.simple_form"></a>4.simple_form</h3><p><code>simple_form</code> 是rails 内建的helper，可以帮帮把<code>\r\n</code>翻译成<br></p>
+<p>因为系统存数据的方法断行是<code>\r\n</code>，HTML不懂什么是<code>\r\n</code>，HTML只知道断行符号是<br></p>
+<h3 id="5-Helper"><a href="#5-Helper" class="headerlink" title="5.Helper"></a>5.Helper</h3><p>Helper是小方法，views用的小方法，Rails内建很多<a href="http://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html" target="_blank" rel="external">Helper</a></p>
+<p>自定义Helper都会放在app/helpers</p>
+<h3 id="6-render-“form”是什么意思？"><a href="#6-render-“form”是什么意思？" class="headerlink" title="6.render “form”是什么意思？"></a>6.render “form”是什么意思？</h3><p>其实这是 &lt;%= render :partial =&gt; “form” %&gt; 的“缩写”，意思是我要引用 Partial (局部）页面的方式。因为我们发现有很大量的程式码重复，所以可以用这样的方式收纳。<br>它的规则是同目录底下的 <code>_xxxx.html.erb</code></p>
+<h3 id="7-irb-rails-c"><a href="#7-irb-rails-c" class="headerlink" title="7.irb  rails c"></a>7.irb  rails c</h3><p>console可以调用资料库，irb只能用来测试代码</p>
+<h3 id="8-redirect-to-back"><a href="#8-redirect-to-back" class="headerlink" title="8.redirect_to :back"></a>8.redirect_to :back</h3><p>回到之前浏览的页面，不发生跳转</p>
+<p>##</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/11/2017-02-11-1406133/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1848,180 +2023,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://kevin161111.github.io/2017/02/03/2017-02-03-1379623/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="KevinHan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdrivzo50qj30n60n6t9z.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="KevinHan">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/03/2017-02-03-1379623/" itemprop="url">
-                  2/3 全栈日志-手打joblisting一遍
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-03T23:49:00+08:00">
-                2017-02-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/orid/" itemprop="url" rel="index">
-                    <span itemprop="name">orid</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/02/03/2017-02-03-1379623/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/03/2017-02-03-1379623/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h2><blockquote>
-<p>关于今天的课程，你记得什么？<br>完成了什么？</p>
-</blockquote>
-<p>因为春节（从初一到初六）家里面没有网络，而且需要陪家人，停止了课程的学习。昨晚回到深圳后回到熟悉的学习进程中，今天手打了一遍joblisting</p>
-<h2 id="Reflective"><a href="#Reflective" class="headerlink" title="Reflective"></a>Reflective</h2><blockquote>
-<p>你要如何形容今天的情绪<br>今天的高峰是什么？<br>今天的低点是什么？</p>
-</blockquote>
-<p>没有高低点，手打joblisting没怎么出错，中间有过几次注意力不集中的时候，后面都有自己拉回来。</p>
-<h2 id="interpretive"><a href="#interpretive" class="headerlink" title="interpretive"></a>interpretive</h2><blockquote>
-<p>我们今天学到了什么？<br>今天最重要的领悟是什么？</p>
-</blockquote>
-<p>最重要的领悟还是在注意力方面，好好把时间利用好。再就是今天练习前给自己定了目标-joblisting一遍，然后用xdite的项目管理方法进行一天目标的管理，保证每天的学习质量。</p>
-<p>Decisional</p>
-<blockquote>
-<p>我们会如何用一句话形容今天的工作？<br>有哪些工作需要明天继续努力？</p>
-</blockquote>
-<p>达成了今天的目标，发现这样每天制定一个小目标的方法不错。用xdite的项目管理方法对一天的目标进行管理，可以保证自己每天的练习强度，保证每天都在进步。</p>
-<p>需要努力的地方：</p>
-<ul>
-<li>明天开始上班了，把项目管理方法用到工作中，处理完工作进入ROR学习</li>
-<li>后天把jdstore的前半部分再做一遍</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2071,7 +2072,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">76</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
